@@ -10,14 +10,19 @@ public class TerrainGenerator : MonoBehaviour
     public GameObject specialCubePrefab;
 
     public GameObject bunnyPrefab;
+
+    public GameObject woodPrefab;
+
     public int width = 100;
     public int height = 100;
     public float scale = 10f;
     public float maxCubeHeight = 2f;
     public float minCubeHeight = 0.5f;
-    public float treeChance = 0.01f;
 
+    public float treeChance = 0.01f;
     public float bushChance = 0.001f;
+    public float woodChance = 0.01f;
+
     public int bunnyCount = 5;
 
     void Start()
@@ -88,6 +93,8 @@ public class TerrainGenerator : MonoBehaviour
 
                     bush.transform.parent = this.transform;
                 }
+
+                spawnObject(woodPrefab, woodChance, x, z, cubeHeight);
             }
         }
 
@@ -101,6 +108,22 @@ public class TerrainGenerator : MonoBehaviour
             bunny.transform.parent = this.transform;
 
             GameManager.Instance.RegisterBunny(bunny); // Notify the GameManager
+        }
+
+
+    }
+
+    void spawnObject(GameObject prefab,float chance, int x, int z,float cubeHeight)
+    {
+        // Decide whether to spawn a tree on this cube
+        if (Random.value < chance)
+        {
+            float Height = prefab.transform.localScale.y;
+            Vector3 position = new Vector3(x - 4, cubeHeight + 6.5f, z - 16);
+
+            GameObject objectToBespawned = Instantiate(prefab, position, Quaternion.identity);
+
+            objectToBespawned.transform.parent = this.transform;
         }
     }
 
