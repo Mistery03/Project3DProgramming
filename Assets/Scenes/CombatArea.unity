@@ -476,6 +476,7 @@ MonoBehaviour:
   specialCubePrefab: {fileID: 1039561244594879065, guid: ec6c92afeb0df2d4e9207b366e53c2b8, type: 3}
   bunnyPrefab: {fileID: 2422716790909971780, guid: 8a399d4c5965b4c47a2285000cf53b1e, type: 3}
   woodPrefab: {fileID: 5482318753007451882, guid: 5004eeb791f6ee049a952ef5ced8078d, type: 3}
+  applePrefab: {fileID: 3242045612695948039, guid: 8e50a7d5508d7c942bd4445cb81dc2a3, type: 3}
   width: 100
   height: 100
   scale: 10
@@ -484,6 +485,7 @@ MonoBehaviour:
   treeChance: 0.01
   bushChance: 0.003
   woodChance: 0.01
+  appleChance: 0.001
   bunnyCount: 5
 --- !u!1001 &9193399912145179091
 PrefabInstance:
