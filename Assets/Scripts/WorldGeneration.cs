@@ -73,28 +73,10 @@ public class TerrainGenerator : MonoBehaviour
                     continue; // Skip tree spawning in this area
                 }
 
-                // Decide whether to spawn a tree on this cube
-                if (Random.value < treeChance)
-                {
-                    float treeHeight = treePrefab.transform.localScale.y;
-                    Vector3 treePosition = new Vector3(x - 4, cubeHeight + 6.5f, z - 16);
 
-                    GameObject tree = Instantiate(treePrefab, treePosition, Quaternion.identity);
-
-                    tree.transform.parent = this.transform;
-                }
-
-                if (Random.value < bushChance)
-                {
-                    float bushHeight = bushesPrefab.transform.localScale.y;
-                    Vector3 bushPosition = new Vector3(x-1.1f, cubeHeight-2.2f, z);
-
-                    GameObject bush = Instantiate(bushesPrefab, bushPosition, Quaternion.identity);
-
-                    bush.transform.parent = this.transform;
-                }
-
-                spawnObject(woodPrefab, woodChance, x, z, cubeHeight);
+                spawnObject(treePrefab, treeChance, x, z, cubeHeight,-4f, 6.5f,-16f);
+                spawnObject(bushesPrefab, bushChance, x, z, cubeHeight,-1.1f, -2.2f,0);
+                spawnObject(woodPrefab, woodChance, x, z, cubeHeight,-4f, 6.5f,-16f);
             }
         }
 
@@ -113,13 +95,13 @@ public class TerrainGenerator : MonoBehaviour
 
     }
 
-    void spawnObject(GameObject prefab,float chance, int x, int z,float cubeHeight)
+    void spawnObject(GameObject prefab,float chance, int x, int z,float cubeHeight,float xOffset,float heightOffset,float zOffset)
     {
         // Decide whether to spawn a tree on this cube
         if (Random.value < chance)
         {
             float Height = prefab.transform.localScale.y;
-            Vector3 position = new Vector3(x - 4, cubeHeight + 6.5f, z - 16);
+            Vector3 position = new Vector3(x + xOffset, cubeHeight + heightOffset, z + zOffset);
 
             GameObject objectToBespawned = Instantiate(prefab, position, Quaternion.identity);
 
