@@ -4,14 +4,11 @@ public class TerrainGenerator : MonoBehaviour
 {
     public GameObject cubePrefab;
     public GameObject treePrefab;
-
     public GameObject bushesPrefab;
-
     public GameObject specialCubePrefab;
-
     public GameObject bunnyPrefab;
-
     public GameObject woodPrefab;
+    public GameObject applePrefab;
 
     public int width = 100;
     public int height = 100;
@@ -21,7 +18,10 @@ public class TerrainGenerator : MonoBehaviour
 
     public float treeChance = 0.01f;
     public float bushChance = 0.001f;
-    public float woodChance = 0.01f;
+    public float woodChance = 0.001f;
+    public float appleChance = 0.001f;
+
+
 
     public int bunnyCount = 5;
 
@@ -33,12 +33,14 @@ public class TerrainGenerator : MonoBehaviour
     void GenerateTerrain()
     {
         // Generate random starting position for the 20x20 area
-        int startX = Random.Range(0, width - 20); // Ensure it doesn't exceed terrain bounds
-        int startZ = Random.Range(0, height - 20); // Ensure it doesn't exceed terrain bounds
+        int startX = Random.Range(0, width - 20);
+        int startZ = Random.Range(0, height - 20);
 
         // Calculate the middle position of the 20x20 area
         int middleX = startX + 15;
         int middleZ = startZ + 15;
+
+        Vector3 specialCubePosition = Vector3.zero;
 
         for (int x = 0; x < width; x++)
         {
@@ -61,22 +63,23 @@ public class TerrainGenerator : MonoBehaviour
                 // Check if the current position is within the randomly chosen 20x20 area
                 if (x >= startX && x < startX + 20 && z >= startZ && z < startZ + 20)
                 {
-                    // Calculate the position of the middle of the 20x20 area
-                    Vector3 specialCubePosition = new Vector3(middleX, cubeHeight / 2, middleZ);
-
-                    // Offset the position to place the special cube in the middle
-                    specialCubePosition -= new Vector3(5, 0, 5);
+                    specialCubePosition = new Vector3(middleX, cubeHeight / 2, middleZ) - new Vector3(5, 0, 5);
 
                     GameObject specialCube = Instantiate(specialCubePrefab, specialCubePosition, Quaternion.identity);
-                    specialCube.transform.localScale = new Vector3(10, 10, 10); // Adjust size to 10x10
+                    specialCube.transform.localScale = new Vector3(10, 13, 10);
                     specialCube.transform.parent = this.transform;
-                    continue; // Skip tree spawning in this area
+
+                    // Set player spawn point near the special cube
+                    Vector3 playerSpawnPosition = specialCubePosition + new Vector3(5, 3, -7);
+                    GameManager.Instance.SetPlayerSpawnPoint(playerSpawnPosition);
+
+                    continue;
                 }
 
-
-                spawnObject(treePrefab, treeChance, x, z, cubeHeight,-4f, 6.5f,-16f);
-                spawnObject(bushesPrefab, bushChance, x, z, cubeHeight,-1.1f, -2.2f,0);
-                spawnObject(woodPrefab, woodChance, x, z, cubeHeight,-4f, 6.5f,-16f);
+                spawnObject(treePrefab, treeChance, x, z, cubeHeight, -4f, 6.5f, -16f);
+                spawnObject(bushesPrefab, bushChance, x, z, cubeHeight, -1.1f, -2.2f, 0);
+                spawnObject(woodPrefab, woodChance, x, z, cubeHeight, -2f, 0f, 0f);
+                spawnObject(applePrefab, appleChance, x, z, cubeHeight, -2, 6.5f, 0);
             }
         }
 
@@ -89,15 +92,12 @@ public class TerrainGenerator : MonoBehaviour
             GameObject bunny = Instantiate(bunnyPrefab, bunnyPosition, Quaternion.identity);
             bunny.transform.parent = this.transform;
 
-            GameManager.Instance.RegisterBunny(bunny); // Notify the GameManager
+            GameManager.Instance.RegisterBunny(bunny);
         }
-
-
     }
 
-    void spawnObject(GameObject prefab,float chance, int x, int z,float cubeHeight,float xOffset,float heightOffset,float zOffset)
+    void spawnObject(GameObject prefab, float chance, int x, int z, float cubeHeight, float xOffset, float heightOffset, float zOffset)
     {
-        // Decide whether to spawn a tree on this cube
         if (Random.value < chance)
         {
             float Height = prefab.transform.localScale.y;
@@ -108,8 +108,4 @@ public class TerrainGenerator : MonoBehaviour
             objectToBespawned.transform.parent = this.transform;
         }
     }
-
-
-
-
 }

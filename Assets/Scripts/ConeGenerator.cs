@@ -3,10 +3,10 @@ using UnityEngine;
 [RequireComponent(typeof(MeshFilter), typeof(MeshRenderer))]
 public class ConeGenerator : MonoBehaviour
 {
-    public float radius = 0.5f;  // Radius of the base of the cone
-    public float height = 1.0f;  // Height of the cone
-    public int segments = 20;    // Number of segments around the base of the cone
-    public Material coneMaterial; // Reference to the material
+    public float radius = 0.5f;
+    public float height = 1.0f;
+    public int segments = 20;
+    public Material coneMaterial;
 
     void Start()
     {
@@ -35,12 +35,10 @@ public class ConeGenerator : MonoBehaviour
         int[] triangles = new int[segments * 6];
         for (int i = 0; i < segments; i++)
         {
-            // Side triangles
             triangles[i * 6] = 0;
             triangles[i * 6 + 1] = i + 1;
             triangles[i * 6 + 2] = (i + 1) % segments + 1;
 
-            // Base triangles
             triangles[i * 6 + 3] = segments + 1;
             triangles[i * 6 + 4] = (i + 1) % segments + 1;
             triangles[i * 6 + 5] = i + 1;
@@ -51,10 +49,8 @@ public class ConeGenerator : MonoBehaviour
         mesh.triangles = triangles;
         mesh.RecalculateNormals();
 
-        // Assign mesh to mesh filter
         meshFilter.mesh = mesh;
 
-        // Assign the white material to the mesh renderer
         if (coneMaterial != null)
         {
             meshRenderer.material = coneMaterial;
