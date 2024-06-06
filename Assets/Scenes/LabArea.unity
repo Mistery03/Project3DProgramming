@@ -987,7 +987,7 @@ Light:
   serializedVersion: 10
   m_Type: 0
   m_Shape: 0
-  m_Color: {r: 0.9056604, g: 0.2264151, b: 0.2264151, a: 1}
+  m_Color: {r: 0.41006586, g: 0.8962264, b: 0.8582194, a: 1}
   m_Intensity: 1
   m_Range: 100
   m_SpotAngle: 30
@@ -1356,6 +1356,22 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 12.31
       objectReference: {fileID: 0}
+    - target: {fileID: 83945307519756918, guid: b26c9e41ff58b6742a7d980e9ffdbd00, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 88e7264f5d8fb034091ef3717261a2ec, type: 2}
+    - target: {fileID: 83945307519756918, guid: b26c9e41ff58b6742a7d980e9ffdbd00, type: 3}
+      propertyPath: m_Materials.Array.data[2]
+      value: 
+      objectReference: {fileID: 2100000, guid: 34a148f911feb2240ad8f1d20b49aa1d, type: 2}
+    - target: {fileID: 83945307519756918, guid: b26c9e41ff58b6742a7d980e9ffdbd00, type: 3}
+      propertyPath: m_Materials.Array.data[3]
+      value: 
+      objectReference: {fileID: 2100000, guid: cadde375675907841bb2553aa1a4d4a2, type: 2}
+    - target: {fileID: 163366776806788199, guid: b26c9e41ff58b6742a7d980e9ffdbd00, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a93220ed39f184d43ace88ffc9df2555, type: 2}
     - target: {fileID: 919132149155446097, guid: b26c9e41ff58b6742a7d980e9ffdbd00, type: 3}
       propertyPath: m_Name
       value: scientist
