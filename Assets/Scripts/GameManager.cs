@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour
         {
             playerInstance = Instantiate(playerPrefab, spawnPosition, Quaternion.identity);
             cameraFollow = Camera.main.GetComponent<TopDownCamera>();
+
             if (cameraFollow != null)
             {
                 cameraFollow.playerTransform = playerInstance.transform;

@@ -499,7 +499,7 @@ MonoBehaviour:
   cubePrefab: {fileID: 4836971551282754102, guid: 7be4829e9e8645247a23cc47746b1943, type: 3}
   treePrefab: {fileID: 2307070377600171803, guid: 1910de2db6a12cd4da7b846d2f32b2ef, type: 3}
   bushesPrefab: {fileID: 1842260712854241420, guid: 0c73bc2fc28454b4899561bbbfee4b04, type: 3}
-  specialCubePrefab: {fileID: 1039561244594879065, guid: ec6c92afeb0df2d4e9207b366e53c2b8, type: 3}
+  lab: {fileID: 1039561244594879065, guid: ec6c92afeb0df2d4e9207b366e53c2b8, type: 3}
   bunnyPrefab: {fileID: 2422716790909971780, guid: 8a399d4c5965b4c47a2285000cf53b1e, type: 3}
   woodPrefab: {fileID: 5482318753007451882, guid: 5004eeb791f6ee049a952ef5ced8078d, type: 3}
   applePrefab: {fileID: 3242045612695948039, guid: 8e50a7d5508d7c942bd4445cb81dc2a3, type: 3}

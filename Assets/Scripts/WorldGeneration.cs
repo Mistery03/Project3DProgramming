@@ -5,7 +5,7 @@ public class TerrainGenerator : MonoBehaviour
     public GameObject cubePrefab;
     public GameObject treePrefab;
     public GameObject bushesPrefab;
-    public GameObject specialCubePrefab;
+    public GameObject lab;
     public GameObject bunnyPrefab;
     public GameObject woodPrefab;
     public GameObject applePrefab;
@@ -40,7 +40,7 @@ public class TerrainGenerator : MonoBehaviour
         int middleX = startX + 15;
         int middleZ = startZ + 15;
 
-        Vector3 specialCubePosition = Vector3.zero;
+        Vector3 labPos = Vector3.zero;
 
         for (int x = 0; x < width; x++)
         {
@@ -63,14 +63,14 @@ public class TerrainGenerator : MonoBehaviour
                 // Check if the current position is within the randomly chosen 20x20 area
                 if (x >= startX && x < startX + 20 && z >= startZ && z < startZ + 20)
                 {
-                    specialCubePosition = new Vector3(middleX, cubeHeight / 2, middleZ) - new Vector3(5, 0, 5);
+                    labPos = new Vector3(middleX, cubeHeight / 2, middleZ) - new Vector3(5, 0, 5);
 
-                    GameObject specialCube = Instantiate(specialCubePrefab, specialCubePosition, Quaternion.identity);
-                    specialCube.transform.localScale = new Vector3(10, 13, 10);
-                    specialCube.transform.parent = this.transform;
+                    GameObject labObject = Instantiate(lab, labPos, Quaternion.identity);
+                    labObject.transform.localScale = new Vector3(10, 13, 10);
+                    labObject.transform.parent = this.transform;
 
                     // Set player spawn point near the special cube
-                    Vector3 playerSpawnPosition = specialCubePosition + new Vector3(5, 3, -7);
+                    Vector3 playerSpawnPosition = labPos + new Vector3(5, 3, -7);
                     GameManager.Instance.SetPlayerSpawnPoint(playerSpawnPosition);
 
                     continue;
