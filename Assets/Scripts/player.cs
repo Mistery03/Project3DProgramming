@@ -4,8 +4,8 @@ using UnityEngine.SceneManagement;
 public class Player : MonoBehaviour
 {
     public float moveSpeed = 5f;
-    public int maxHP = 100;
-    private int currentHP;
+    public float maxHP = 100;
+    private float currentHP;
 
     public InventoryController inventoryController;
 
@@ -78,7 +78,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
         currentHP -= damage;
         if (currentHP <= 0)

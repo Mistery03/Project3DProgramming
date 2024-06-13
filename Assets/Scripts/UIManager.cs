@@ -19,7 +19,7 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    public void UpdateHP(int currentHP, int maxHP)
+    public void UpdateHP(float currentHP, float maxHP)
     {
         hpText.text = "HP: " + currentHP + "/" + maxHP;
     }
