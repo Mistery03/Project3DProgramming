@@ -1,10 +1,9 @@
 using UnityEngine;
 
-public class bnuuyFollow : MonoBehaviour
+public class animalFollow : MonoBehaviour
 {
     public float moveSpeed = 3f;
     public float rotationSpeed = 5f;
-    public float desiredXRotation = -90f;
     public float detectionRadius = 10f;
     public int terrainWidth = 100;
     public int terrainHeight = 100;
@@ -23,16 +22,14 @@ public class bnuuyFollow : MonoBehaviour
     public void SetTarget(Transform newTarget)
     {
         Target = newTarget;
+        isFollowing = newTarget != null;
     }
 
     private void Update()
     {
-        if (isFollowing)
+        if (isFollowing && Target != null)
         {
-            if (Target != null)
-            {
-                FollowTarget();
-            }
+            FollowTarget();
         }
         else
         {
@@ -43,30 +40,18 @@ public class bnuuyFollow : MonoBehaviour
     private void FollowTarget()
     {
         Vector3 moveDirection = (Target.position - transform.position).normalized;
-
         transform.position += moveDirection * moveSpeed * Time.deltaTime;
 
-        Quaternion targetRotation = Quaternion.LookRotation(Vector3.forward, moveDirection);
-
-        Vector3 euler = targetRotation.eulerAngles;
-        euler.x = desiredXRotation;
-        targetRotation = Quaternion.Euler(euler);
-
+        Quaternion targetRotation = Quaternion.LookRotation(moveDirection);
         transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
     }
 
     private void MoveRandomly()
     {
         Vector3 moveDirection = (randomTarget - transform.position).normalized;
-
         transform.position += moveDirection * moveSpeed * Time.deltaTime;
 
-        Quaternion targetRotation = Quaternion.LookRotation(Vector3.forward, moveDirection);
-
-        Vector3 euler = targetRotation.eulerAngles;
-        euler.x = desiredXRotation;
-        targetRotation = Quaternion.Euler(euler);
-
+        Quaternion targetRotation = Quaternion.LookRotation(moveDirection);
         transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
 
         if (Vector3.Distance(transform.position, randomTarget) < 0.5f)
@@ -77,8 +62,8 @@ public class bnuuyFollow : MonoBehaviour
 
     private void SetRandomTarget()
     {
-        float newX = Mathf.Clamp(transform.position.x + Random.Range(-5f, 5f), 0, terrainWidth - 1);
-        float newZ = Mathf.Clamp(transform.position.z + Random.Range(-5f, 5f), 0, terrainHeight - 1);
+        float newX = Mathf.Clamp(transform.position.x + Random.Range(-5f, 5f), 0, terrainWidth);
+        float newZ = Mathf.Clamp(transform.position.z + Random.Range(-5f, 5f), 0, terrainHeight);
         randomTarget = new Vector3(newX, transform.position.y, newZ);
     }
 
@@ -91,8 +76,7 @@ public class bnuuyFollow : MonoBehaviour
             {
                 if (collider.CompareTag("Player"))
                 {
-                    isFollowing = true;
-                    Target = collider.transform;
+                    SetTarget(collider.transform);
                     break;
                 }
             }
