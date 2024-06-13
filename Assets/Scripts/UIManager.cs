@@ -21,6 +21,6 @@ public class UIManager : MonoBehaviour
 
     public void UpdateHP(float currentHP, float maxHP)
     {
-        hpText.text = "HP: " + currentHP + "/" + maxHP;
+        hpText.text = "HP: " + Mathf.Floor(currentHP) + "/" + Mathf.Floor(maxHP);
     }
 }
