@@ -160,7 +160,7 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -168,6 +168,48 @@ TextureImporter:
       bones: []
       spriteID: e1ab6e1b4cc6761418f4a4a693de1f47
       internalID: 172691878
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Wood
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 293
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e60719e7c062fee4fb530ecf42926c60
+      internalID: -930167507
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Uranium
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 835
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8c9ea974623906c45bc87361b59342d6
+      internalID: -167941892
       vertices: []
       indices: 
       edges: []
@@ -185,6 +227,8 @@ TextureImporter:
     nameFileIdTable:
       Apple: -2046108269
       ChemistryPoint: 172691878
+      Uranium: -167941892
+      Wood: -930167507
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

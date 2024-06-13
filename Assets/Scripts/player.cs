@@ -1,3 +1,4 @@
+using Inventory.Model;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -15,6 +16,9 @@ public class Player : MonoBehaviour
 
     private Rigidbody rb;
     private GameManager gameManager;
+
+    public ItemData woodData;
+    public ItemData uraniumData;
 
     private void Start()
     {
@@ -40,9 +44,33 @@ public class Player : MonoBehaviour
         // Update Rigidbody velocity instead of transforming position directly
         rb.velocity = new Vector3(movement.x, rb.velocity.y, movement.z);
 
+
+
         if (Input.GetMouseButtonDown(0))
         {
-            if (!isCarrying)
+            RaycastHit hit;
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(ray, out hit))
+            {
+                // Check if the object hit by the raycast is carryable
+                if (hit.collider.CompareTag("Carryable"))
+                {
+                    carriedObject = hit.collider.gameObject;
+
+                    Debug.Log(carriedObject.name);
+
+                    if (carriedObject.name == "Wood(Clone)")
+                        inventoryController.inventoryModel.InsertItem(woodData, 1);
+                    else if(carriedObject.name == "uranium(Clone)")
+                        inventoryController.inventoryModel.InsertItem(uraniumData, 1);
+                    //carriedObject.transform.parent = transform;
+
+                    Destroy(carriedObject);
+                        //carriedObject.transform.localPosition = carryOffset;
+                        //Debug.Log("Item Carried");
+                }
+            }
+            /*if (!isCarrying)
             {
                 // Perform raycast to check for objects to carry
                 RaycastHit hit;
@@ -54,21 +82,18 @@ public class Player : MonoBehaviour
                     if (hit.collider.CompareTag("Carryable"))
                     {
                         carriedObject = hit.collider.gameObject;
-                        carriedObject.transform.parent = transform;
+
+                        if (carriedObject.name == "Wood")
+                            Debug.Log(woodData);
+                        //carriedObject.transform.parent = transform;
                         isCarrying = true;
 
-                        carriedObject.transform.localPosition = carryOffset;
-                        Debug.Log("Item Carried");
+                        //carriedObject.transform.localPosition = carryOffset;
+                        //Debug.Log("Item Carried");
                     }
-                }
-                Debug.Log("Item not carried");
-            }
-            else
-            {
-                //carriedObject.transform.parent = null;
-               // carriedObject = null;
-                isCarrying = false;
-            }
+                }*/
+               
+            
         }
     }
 

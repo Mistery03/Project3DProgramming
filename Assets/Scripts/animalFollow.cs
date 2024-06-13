@@ -17,6 +17,7 @@ public class animalFollow : MonoBehaviour
     private void Start()
     {
         SetRandomTarget();
+        transform.rotation = Quaternion.Euler(0, 1, 0);
     }
 
     public void SetTarget(Transform newTarget)

@@ -7,7 +7,7 @@ using static UnityEditor.Progress;
 public class InventoryController : MonoBehaviour
 {
     [SerializeField] GameObject inventoryObject;
-    [SerializeField] InventoryModel inventoryModel;
+    public InventoryModel inventoryModel;
     public List<SlotData> playerInventory = new List<SlotData>();
     public int maxInventorySlots = 16;
 
