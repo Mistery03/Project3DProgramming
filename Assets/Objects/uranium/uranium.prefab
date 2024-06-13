@@ -160,7 +160,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: f9c3a23456b6aa441a5ddd2f0c464a9d, type: 3}
       propertyPath: m_Name
-      value: uranium 1
+      value: uranium
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f9c3a23456b6aa441a5ddd2f0c464a9d, type: 3}
+      propertyPath: m_TagString
+      value: Carryable
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:

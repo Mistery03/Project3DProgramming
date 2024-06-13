@@ -25,6 +25,7 @@ public class lab : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
+            GameManager.Instance.AudioDestroy();
             gameManager.ChangeScene("LabArea"); 
         }
     }

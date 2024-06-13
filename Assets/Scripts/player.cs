@@ -58,13 +58,15 @@ public class Player : MonoBehaviour
                         isCarrying = true;
 
                         carriedObject.transform.localPosition = carryOffset;
+                        Debug.Log("Item Carried");
                     }
                 }
+                Debug.Log("Item not carried");
             }
             else
             {
-                carriedObject.transform.parent = null;
-                carriedObject = null;
+                //carriedObject.transform.parent = null;
+               // carriedObject = null;
                 isCarrying = false;
             }
         }
@@ -85,6 +87,7 @@ public class Player : MonoBehaviour
         {
             currentHP = 0;
             Debug.Log("Player has died!");
+            GameManager.Instance.AudioDestroy();
             SceneManager.LoadScene("LabArea");
         }
         Debug.Log("Player HP: " + currentHP);

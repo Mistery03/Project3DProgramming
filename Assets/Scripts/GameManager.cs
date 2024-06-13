@@ -21,7 +21,8 @@ public class GameManager : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject); // Ensure GameManager persists across scenes
-            audioSource = gameObject.AddComponent<AudioSource>(); // Add an AudioSource component to the GameManager
+            
+            InitAudioSource();
             ChangeBackgroundMusic(oriMusicClip);
         }
         else
@@ -29,6 +30,12 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    private void Update()
+    {
+        InitAudioSource();
+    }
+
 
     public void SetPlayerSpawnPoint(Vector3 spawnPosition)
     {
@@ -61,8 +68,21 @@ public class GameManager : MonoBehaviour
 
     public void ChangeScene(string sceneName)
     {
-        Destroy(audioSource);
+        AudioDestroy();
         SceneManager.LoadScene(sceneName);
+    }
+
+    public void AudioDestroy()
+    {
+        Destroy(audioSource);
+    }
+
+    private void InitAudioSource()
+    {
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>(); // Add an AudioSource component to the GameManager
+        }
     }
 
     public void PlayerTakeDamage(int damage)
@@ -75,7 +95,7 @@ public class GameManager : MonoBehaviour
 
     private void ChangeBackgroundMusic(AudioClip newClip)
     {
-        if (audioSource.clip != newClip)
+        if (audioSource != null && audioSource.clip != newClip)
         {
             audioSource.clip = newClip;
             audioSource.Play();
