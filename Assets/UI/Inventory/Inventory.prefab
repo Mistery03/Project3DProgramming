@@ -475,3 +475,4 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   maxInventorySlots: 16
+  testApple: {fileID: 11400000, guid: 09c621cf1d7215940bd00b04352a9475, type: 2}
