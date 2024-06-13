@@ -1057,6 +1057,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerPrefab: {fileID: 78529438512931355, guid: eefe0d0637e00db4ba5df4d2084dd8f4, type: 3}
+  newMusicClip: {fileID: 8300000, guid: 334d0d5b6cce8054fa3f0c49bc350c81, type: 3}
+  oriMusicClip: {fileID: 8300000, guid: f271f464ee8852340a458a19e8908d6a, type: 3}
 --- !u!4 &1360006800
 Transform:
   m_ObjectHideFlags: 0
