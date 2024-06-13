@@ -5,10 +5,15 @@ using UnityEngine.SceneManagement;
 
 public class lab : MonoBehaviour
 {
+    private GameManager gameManager;
     // Start is called before the first frame update
     void Start()
     {
-        
+        gameManager = FindObjectOfType<GameManager>();
+        if (gameManager == null)
+        {
+            Debug.LogError("GameManager not found in the scene.");
+        }
     }
 
     // Update is called once per frame
@@ -16,9 +21,12 @@ public class lab : MonoBehaviour
     {
         
     }
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider collision)
     {
-        SceneManager.LoadScene(0);
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            gameManager.ChangeScene("LabArea"); 
+        }
     }
 
 }

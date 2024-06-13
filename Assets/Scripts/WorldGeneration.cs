@@ -23,7 +23,7 @@ public class TerrainGenerator : MonoBehaviour
 
 
 
-    public int bunnyCount = 5;
+    public int bunnyCount = 0;
 
     void Start()
     {
