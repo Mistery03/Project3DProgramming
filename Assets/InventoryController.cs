@@ -34,8 +34,5 @@ public class InventoryController : MonoBehaviour
             inventoryModel.InsertItem(testApple, 1);
     }
 
-    private void OnMouseEnter()
-    {
-        print("test");
-    }
+   
 }
