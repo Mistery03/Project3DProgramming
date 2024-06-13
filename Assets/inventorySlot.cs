@@ -4,9 +4,10 @@ using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UIElements;
 
-public class InventorySlot : MonoBehaviour
+public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public ItemData item;
     public int amount = 0;
@@ -14,7 +15,6 @@ public class InventorySlot : MonoBehaviour
     [SerializeField] UnityEngine.UI.Image texture;
     [SerializeField] TextMeshProUGUI amountText;
     [SerializeField] GameObject itemTexture, itemAmount; //To have visible options
-
    
 
     void Start()
@@ -62,5 +62,28 @@ public class InventorySlot : MonoBehaviour
         item = null;
         amount = 0;
         UpdateSlot();
+    }
+
+    private void OnMouseEnter()
+    {
+
+        Debug.Log(item.name);
+    }
+
+    private void OnMouseDown()
+    {
+        print(item.name);
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+  
+        
+        Debug.Log(item.name);
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        throw new System.NotImplementedException();
     }
 }

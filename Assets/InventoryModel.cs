@@ -1,3 +1,4 @@
+using Inventory.Model;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -13,6 +14,8 @@ public class InventoryModel : MonoBehaviour
     public List<InventorySlot> slotList = new List<InventorySlot>();
     public int maxInventorySlots = 16;
     public List<SlotData> playerInventory = new List<SlotData>();
+
+    const int MAXSTACKSIZE = 10;
 
     // Start is called before the first frame update
     void Start()
@@ -47,9 +50,87 @@ public class InventoryModel : MonoBehaviour
         }
     }
 
+    public void InsertItem(ItemData item, int amount)
+    {
+        int overflow = amount;
+
+        foreach (var slot in slotList)
+        {
+            if (slot.item == item && slot.amount < MAXSTACKSIZE)
+            {
+                int availableSpace = MAXSTACKSIZE - slot.amount;
+                if (overflow <= availableSpace)
+                {
+                    slot.amount += overflow;
+                    overflow = 0;
+                    break;
+                }
+                else
+                {
+                    slot.amount += availableSpace;
+                    overflow -= availableSpace;
+                }
+
+                slot.UpdateSlot();
+            }
+        }
+
+        if (overflow > 0)
+        {
+            foreach (var slot in slotList)
+            {
+                if (slot.item == null)
+                {
+                    slot.item = item;
+                    if (overflow <= MAXSTACKSIZE)
+                    {
+                        slot.amount = overflow;
+                        overflow = 0;
+                    }
+                    else
+                    {
+                        slot.amount = MAXSTACKSIZE;
+                        overflow -= MAXSTACKSIZE;
+                    }
+
+                    slot.UpdateSlot();
+                    break;
+                }
+            }
+        }
+    }
+
+    public void RemoveItem(ItemData item, int amount)
+    {
+        foreach (var slot in slotList)
+        {
+            if (slot.item == item)
+            {
+                if (slot.amount >= amount)
+                {
+                    slot.amount -= amount;
+                    if (slot.amount == 0)
+                    {
+                        slot.ClearSlot();
+                    }
+                    slot.UpdateSlot();
+                    return;
+                }
+                else
+                {
+                    amount -= slot.amount;
+                    slot.ClearSlot();
+                    slot.UpdateSlot();
+                }
+            }
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("SLot data "+ playerInventory[0].item);
+       // Debug.Log("SLot data "+ playerInventory[0].item);
     }
+
+  
 }
