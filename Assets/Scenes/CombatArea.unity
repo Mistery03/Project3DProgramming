@@ -769,6 +769,7 @@ MonoBehaviour:
   bunnyPrefab: {fileID: 1736732376848332, guid: fb573fe406c53c740acf51407165ee68, type: 3}
   woodPrefab: {fileID: 5482318753007451882, guid: 5004eeb791f6ee049a952ef5ced8078d, type: 3}
   applePrefab: {fileID: 3242045612695948039, guid: 8e50a7d5508d7c942bd4445cb81dc2a3, type: 3}
+  uraniumPrefab: {fileID: 2088669640223336340, guid: 1a12b3b9f5ac4224697a1bce2fc424f1, type: 3}
   width: 100
   height: 100
   scale: 10
@@ -778,4 +779,5 @@ MonoBehaviour:
   bushChance: 0.003
   woodChance: 0.001
   appleChance: 0.001
+  uraniumChance: 0.001
   bunnyCount: 5
