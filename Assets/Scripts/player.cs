@@ -4,6 +4,8 @@ public class Player : MonoBehaviour
 {
     public float moveSpeed = 5f;
 
+    public InventoryController inventoryController;
+
     private GameObject carriedObject; 
     private bool isCarrying = false;
     private Vector3 carryOffset = new Vector3(-1f, 1f, -1f);
