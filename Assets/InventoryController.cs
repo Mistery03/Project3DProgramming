@@ -4,16 +4,20 @@ using UnityEngine;
 
 public class InventoryController : MonoBehaviour
 {
-    [SerializeField] GameObject inventory;
-   
+    [SerializeField] GameObject inventoryObject;
+    [SerializeField] InventoryModel inventoryModel;
+    public List<SlotData> playerInventory = new List<SlotData>();
+    public int maxInventorySlots = 16;
+
 
     // Update is called once per frame
     void Update()
     {
-
+        inventoryModel.playerInventory = playerInventory;
+        inventoryModel.maxInventorySlots = maxInventorySlots;
+       
         toggleInventory();
        
-
         
     }
 
@@ -21,6 +25,6 @@ public class InventoryController : MonoBehaviour
     {
 
         if (Input.GetKeyDown(KeyCode.I))
-            inventory.SetActive(!inventory.activeSelf);
+            inventoryObject.SetActive(!inventoryObject.activeSelf);
     }
 }
