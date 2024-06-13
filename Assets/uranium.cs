@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class uranium : MonoBehaviour
 {
-    public float damageTiming = 10;
+    public float damageTiming = 10.0sf;
     public float damageRadius = 5.0f;
 
     private GameObject playerPrefab;
