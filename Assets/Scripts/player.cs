@@ -11,11 +11,14 @@ public class Player : MonoBehaviour
     private Vector3 carryOffset = new Vector3(-1f, 1f, -1f);
 
     private Rigidbody rb;
-
+    public float maxHealth = 100f;
+    public float currentHealth;
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
+
+        currentHealth = maxHealth;
     }
 
     private void Update()
@@ -55,7 +58,15 @@ public class Player : MonoBehaviour
                 isCarrying = false;
             }
         }
+    }
 
-
+    public void TakeDamage(float damageTiming)
+    {
+        currentHealth -= damageTiming;
+        Debug.Log(currentHealth);
+        if (currentHealth < 0f)
+        {
+            Debug.Log("Died");
+        }
     }
 }

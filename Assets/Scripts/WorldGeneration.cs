@@ -9,6 +9,8 @@ public class TerrainGenerator : MonoBehaviour
     public GameObject bunnyPrefab;
     public GameObject woodPrefab;
     public GameObject applePrefab;
+    public GameObject uraniumPrefab;
+    
 
     public int width = 100;
     public int height = 100;
@@ -20,6 +22,7 @@ public class TerrainGenerator : MonoBehaviour
     public float bushChance = 0.001f;
     public float woodChance = 0.001f;
     public float appleChance = 0.001f;
+    public float uraniumChance = 0.01f;
 
 
 
@@ -80,6 +83,7 @@ public class TerrainGenerator : MonoBehaviour
                 spawnObject(bushesPrefab, bushChance, x, z, cubeHeight, -1.1f, -2.2f, 0);
                 spawnObject(woodPrefab, woodChance, x, z, cubeHeight, -2f, 0f, 0f);
                 spawnObject(applePrefab, appleChance, x, z, cubeHeight, -2, 6.5f, 0);
+                spawnObject(uraniumPrefab, uraniumChance, x, z, cubeHeight, -2, 6.5f, 0);
             }
         }
 
