@@ -66,7 +66,7 @@ public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
     private void OnMouseEnter()
     {
-        print(item.name);
+
         Debug.Log(item.name);
     }
 
@@ -78,7 +78,8 @@ public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     public void OnPointerEnter(PointerEventData eventData)
     {
   
-        Debug.Log("print");
+        
+        Debug.Log(item.name);
     }
 
     public void OnPointerExit(PointerEventData eventData)
