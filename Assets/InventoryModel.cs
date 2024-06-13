@@ -25,7 +25,7 @@ public class InventoryModel : MonoBehaviour
            slotList.Add(slotToBeAdded);
         }
 
-        UpdateSlots(); 
+        UpdateSlots();
 
     }
 
@@ -44,56 +44,6 @@ public class InventoryModel : MonoBehaviour
             }
 
         
-        }
-    }
-
-    public void InsertItem(InventoryItem item, int amount)
-    {
-        int overflow = amount;
-
-        foreach (var slot in slotList)
-        {
-            if (slot.item == item && slot.amount < item.maxStackSize)
-            {
-                int availableSpace = item.maxStackSize - slot.amount;
-                if (overflow <= availableSpace)
-                {
-                    slot.amount += overflow;
-                    overflow = 0;
-                    break;
-                }
-                else
-                {
-                    slot.amount += availableSpace;
-                    overflow -= availableSpace;
-                }
-
-                slot.UpdateSlot();
-            }
-        }
-
-        if (overflow > 0)
-        {
-            foreach (var slot in slotList)
-            {
-                if (slot.item == null)
-                {
-                    slot.item = item;
-                    if (overflow <= item.maxStackSize)
-                    {
-                        slot.amount = overflow;
-                        overflow = 0;
-                    }
-                    else
-                    {
-                        slot.amount = item.maxStackSize;
-                        overflow -= item.maxStackSize;
-                    }
-
-                    slot.UpdateSlot();
-                    break;
-                }
-            }
         }
     }
 

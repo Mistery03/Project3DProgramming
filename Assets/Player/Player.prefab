@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 1562485012009385106}
   - component: {fileID: 3664689245837069822}
   m_Layer: 0
-  m_Name: Capsule
+  m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -151,6 +151,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
+  inventoryController: {fileID: 6822750111505281473}
 --- !u!114 &3664689245837069822
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -258,6 +259,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8497288549046077901, guid: d02507f40a913134d92efcef4b9ade62, type: 3}
   m_PrefabInstance: {fileID: 8007999912125267112}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &6822750111505281473 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3570622702610976105, guid: d02507f40a913134d92efcef4b9ade62, type: 3}
+  m_PrefabInstance: {fileID: 8007999912125267112}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6392edadd72dab4892ebe30f555b20c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8715399074504125004 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1716276309631686372, guid: d02507f40a913134d92efcef4b9ade62, type: 3}
