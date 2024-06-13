@@ -389,8 +389,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7157215cf76fc6942b305c713916ea2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slot: {fileID: 4204446604290474904, guid: 7182520bc4395ef40b638088e9002b62, type: 3}
-  maxInventorySize: 0
+  slot: {fileID: 9148062537141621539, guid: 7182520bc4395ef40b638088e9002b62, type: 3}
+  maxInventorySize: 16
+  slotList: []
+  maxInventorySlots: 16
+  playerInventory:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1 &8659899752073474051
 GameObject:
   m_ObjectHideFlags: 0
@@ -436,4 +455,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6392edadd72dab4892ebe30f555b20c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventory: {fileID: 0}
+  inventoryObject: {fileID: 1716276309631686372}
+  inventoryModel: {fileID: 3129856207683513891}
+  playerInventory:
+  - {fileID: 11400000, guid: d31acf509c7005c45ac726b6a989d6f6, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  maxInventorySlots: 16
