@@ -9,6 +9,7 @@ public class TerrainGenerator : MonoBehaviour
     public GameObject bunnyPrefab;
     public GameObject woodPrefab;
     public GameObject applePrefab;
+    public GameObject waterPrefab;
 
     public int width = 100;
     public int height = 100;
@@ -21,9 +22,13 @@ public class TerrainGenerator : MonoBehaviour
     public float woodChance = 0.001f;
     public float appleChance = 0.001f;
 
-
+    public float waterLevel = 0.5f; // The height level for water
+    public int waterAreaSize = 20; // Size of the water area
+    public int specialCubeAreaSize = 20; // Size of the special cube area
 
     public int bunnyCount = 0;
+
+    public Vector3 waterScale = new Vector3(60, 1, 60);
 
     void Start()
     {
@@ -32,20 +37,31 @@ public class TerrainGenerator : MonoBehaviour
 
     void GenerateTerrain()
     {
-        // Generate random starting position for the 20x20 area
-        int startX = Random.Range(0, width - 20);
-        int startZ = Random.Range(0, height - 20);
+        // Generate random starting positions for the 20x20 water and special cube areas
+        int waterStartX = Random.Range(0, width - waterAreaSize);
+        int waterStartZ = Random.Range(0, height - waterAreaSize);
 
-        // Calculate the middle position of the 20x20 area
-        int middleX = startX + 15;
-        int middleZ = startZ + 15;
+        int specialCubeStartX;
+        int specialCubeStartZ;
 
-        Vector3 labPos = Vector3.zero;
+        do
+        {
+            specialCubeStartX = Random.Range(0, width - specialCubeAreaSize);
+            specialCubeStartZ = Random.Range(0, height - specialCubeAreaSize);
+        }
+        while (IsOverlapping(waterStartX, waterStartZ, waterAreaSize, specialCubeStartX, specialCubeStartZ, specialCubeAreaSize));
 
         for (int x = 0; x < width; x++)
         {
             for (int z = 0; z < height; z++)
             {
+                // Check if the current position is within the 20x20 water area
+                if (x >= waterStartX && x < waterStartX + waterAreaSize && z >= waterStartZ && z < waterStartZ + waterAreaSize)
+                {
+                    SpawnWater(x, z);
+                    continue; // Skip the rest of the loop to avoid spawning cubes and objects
+                }
+
                 Vector3 position = new Vector3(x, 0, z);
 
                 // Generate Perlin noise value
@@ -53,29 +69,31 @@ public class TerrainGenerator : MonoBehaviour
 
                 float cubeHeight = Mathf.Lerp(minCubeHeight, maxCubeHeight, noiseValue);
 
+                // Spawn the cube
                 GameObject cube = Instantiate(cubePrefab, position, Quaternion.identity);
-
                 cube.transform.localScale = new Vector3(1, cubeHeight, 1);
                 cube.transform.position = new Vector3(x, cubeHeight / 2, z);
-
                 cube.transform.parent = this.transform;
 
-                // Check if the current position is within the randomly chosen 20x20 area
-                if (x >= startX && x < startX + 20 && z >= startZ && z < startZ + 20)
+                // Check if the current position is within the special cube area
+                if (x >= specialCubeStartX && x < specialCubeStartX + specialCubeAreaSize && z >= specialCubeStartZ && z < specialCubeStartZ + specialCubeAreaSize)
                 {
-                    labPos = new Vector3(middleX, cubeHeight / 2, middleZ) - new Vector3(5, 0, 5);
+                    if (x == specialCubeStartX + specialCubeAreaSize / 2 && z == specialCubeStartZ + specialCubeAreaSize / 2)
+                    {
+                        Vector3 labPos = new Vector3(x, cubeHeight / 2, z);
+                        GameObject labObject = Instantiate(lab, labPos, Quaternion.identity);
+                        labObject.transform.localScale = new Vector3(10, 13, 10);
+                        labObject.transform.parent = this.transform;
 
-                    GameObject labObject = Instantiate(lab, labPos, Quaternion.identity);
-                    labObject.transform.localScale = new Vector3(10, 13, 10);
-                    labObject.transform.parent = this.transform;
+                        // Set player spawn point near the special cube
+                        Vector3 playerSpawnPosition = labPos + new Vector3(5, 3, -7);
+                        GameManager.Instance.SetPlayerSpawnPoint(playerSpawnPosition);
+                    }
 
-                    // Set player spawn point near the special cube
-                    Vector3 playerSpawnPosition = labPos + new Vector3(5, 3, -7);
-                    GameManager.Instance.SetPlayerSpawnPoint(playerSpawnPosition);
-
-                    continue;
+                    continue; // Skip object spawning for the special cube area
                 }
 
+                // Spawn objects with chances
                 spawnObject(treePrefab, treeChance, x, z, cubeHeight, -4f, 6.5f, -16f);
                 spawnObject(bushesPrefab, bushChance, x, z, cubeHeight, -1.1f, -2.2f, 0);
                 spawnObject(woodPrefab, woodChance, x, z, cubeHeight, -2f, 0f, 0f);
@@ -96,16 +114,29 @@ public class TerrainGenerator : MonoBehaviour
         }
     }
 
+    bool IsOverlapping(int startX1, int startZ1, int size1, int startX2, int startZ2, int size2)
+    {
+        return startX1 < startX2 + size2 + 10  &&
+               startX1 + size1 + 10 > startX2 &&
+               startZ1 < startZ2 + size2 + 10 &&
+               startZ1 + size1 + 10 > startZ2;
+    }
+
+    void SpawnWater(int x, int z)
+    {
+        Vector3 waterPosition = new Vector3(x + waterAreaSize / 2, waterLevel, z + waterAreaSize / 2);
+        GameObject water = Instantiate(waterPrefab, waterPosition, Quaternion.identity);
+        water.transform.localScale = waterScale;
+        water.transform.parent = this.transform;
+    }
+
     void spawnObject(GameObject prefab, float chance, int x, int z, float cubeHeight, float xOffset, float heightOffset, float zOffset)
     {
         if (Random.value < chance)
         {
-            float Height = prefab.transform.localScale.y;
             Vector3 position = new Vector3(x + xOffset, cubeHeight + heightOffset, z + zOffset);
-
-            GameObject objectToBespawned = Instantiate(prefab, position, Quaternion.identity);
-
-            objectToBespawned.transform.parent = this.transform;
+            GameObject objectToBeSpawned = Instantiate(prefab, position, Quaternion.identity);
+            objectToBeSpawned.transform.parent = this.transform;
         }
     }
 }
