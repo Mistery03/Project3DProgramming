@@ -770,6 +770,7 @@ MonoBehaviour:
   woodPrefab: {fileID: 5482318753007451882, guid: 5004eeb791f6ee049a952ef5ced8078d, type: 3}
   applePrefab: {fileID: 3242045612695948039, guid: 8e50a7d5508d7c942bd4445cb81dc2a3, type: 3}
   uraniumPrefab: {fileID: 2088669640223336340, guid: 1a12b3b9f5ac4224697a1bce2fc424f1, type: 3}
+  waterPrefab: {fileID: 2370052644932367753, guid: 49ac3565f335e214ebd40608fa51f273, type: 3}
   width: 100
   height: 100
   scale: 10
@@ -781,3 +782,19 @@ MonoBehaviour:
   appleChance: 0.001
   uraniumChance: 0.001
   bunnyCount: 5
+  waterLevel: 0.5
+  waterAreaSize: 10
+  specialCubeAreaSize: 20
+  bunnyCount: 5
+  waterScale: {x: 20, y: 1, z: 20}
+--- !u!1660057539 &9223372036854775807
+SceneRoots:
+  m_ObjectHideFlags: 0
+  m_Roots:
+  - {fileID: 705507995}
+  - {fileID: 845801707}
+  - {fileID: 1589713543}
+  - {fileID: 963194228}
+  - {fileID: 1926371333}
+  - {fileID: 1805805117}
+  - {fileID: 1350422114}
