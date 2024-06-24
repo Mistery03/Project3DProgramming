@@ -29,6 +29,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 78529438512931355}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 11.69, y: 4.66, z: 11.56}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -36,7 +37,6 @@ Transform:
   m_Children:
   - {fileID: 1931568803443324261}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &3869485933166471196
 MeshFilter:
@@ -153,6 +153,7 @@ MonoBehaviour:
   moveSpeed: 5
   maxHP: 100
   inventoryController: {fileID: 6822750111505281473}
+  finishedMenu: {fileID: 8019218735773578403}
   woodData: {fileID: 11400000, guid: b5b8df58d03d4004e9680116188637b6, type: 2}
   uraniumData: {fileID: 11400000, guid: e2185ff481e9b034ab867c21a2358a78, type: 2}
 --- !u!114 &3664689245837069822
@@ -273,6 +274,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6392edadd72dab4892ebe30f555b20c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &8019218735773578403 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 30361425308616715, guid: d02507f40a913134d92efcef4b9ade62, type: 3}
+  m_PrefabInstance: {fileID: 8007999912125267112}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &8715399074504125004 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1716276309631686372, guid: d02507f40a913134d92efcef4b9ade62, type: 3}

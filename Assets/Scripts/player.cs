@@ -44,8 +44,6 @@ public class Player : MonoBehaviour
         // Update Rigidbody velocity instead of transforming position directly
         rb.velocity = new Vector3(movement.x, rb.velocity.y, movement.z);
 
-
-
         if (Input.GetMouseButtonDown(0))
         {
             RaycastHit hit;
@@ -61,39 +59,12 @@ public class Player : MonoBehaviour
 
                     if (carriedObject.name == "Wood(Clone)")
                         inventoryController.inventoryModel.InsertItem(woodData, 1);
-                    else if(carriedObject.name == "uranium(Clone)")
+                    else if (carriedObject.name == "uranium(Clone)")
                         inventoryController.inventoryModel.InsertItem(uraniumData, 1);
-                    //carriedObject.transform.parent = transform;
-
+                    
                     Destroy(carriedObject);
-                        //carriedObject.transform.localPosition = carryOffset;
-                        //Debug.Log("Item Carried");
                 }
-            }
-            /*if (!isCarrying)
-            {
-                // Perform raycast to check for objects to carry
-                RaycastHit hit;
-                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-                if (Physics.Raycast(ray, out hit))
-                {
-                    // Check if the object hit by the raycast is carryable
-                    if (hit.collider.CompareTag("Carryable"))
-                    {
-                        carriedObject = hit.collider.gameObject;
-
-                        if (carriedObject.name == "Wood")
-                            Debug.Log(woodData);
-                        //carriedObject.transform.parent = transform;
-                        isCarrying = true;
-
-                        //carriedObject.transform.localPosition = carryOffset;
-                        //Debug.Log("Item Carried");
-                    }
-                }*/
-               
-            
+            }    
         }
     }
 
@@ -102,6 +73,10 @@ public class Player : MonoBehaviour
         if (collision.collider.CompareTag("Enemy"))
         {
             GameManager.Instance.PlayerTakeDamage(10);
+        }
+        else if (collision.collider.CompareTag("DeathPoint"))
+        {
+            TakeDamage(100); // Apply 100 damage if colliding with DeathPoint
         }
     }
 
@@ -113,7 +88,11 @@ public class Player : MonoBehaviour
             currentHP = 0;
             Debug.Log("Player has died!");
             GameManager.Instance.AudioDestroy();
-            SceneManager.LoadScene("LabArea");
+
+            // Show the death panel
+            UIManager.Instance.ShowDeathPanel();
+
+            // Optionally, stop the game or do other death-related actions here
         }
         Debug.Log("Player HP: " + currentHP);
         UIManager.Instance.UpdateHP(currentHP, maxHP); // Update HP text
