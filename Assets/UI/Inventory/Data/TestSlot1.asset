@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: TestSlot1
   m_EditorClassIdentifier: 
   <item>k__BackingField: {fileID: 11400000, guid: 09c621cf1d7215940bd00b04352a9475, type: 2}
-  <amount>k__BackingField: 20
+  <amount>k__BackingField: 10
