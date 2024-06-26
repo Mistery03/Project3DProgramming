@@ -21,9 +21,7 @@ namespace Inventory.Model
         [field: SerializeField]
         public Sprite ItemImage { get; set; }
 
-        [field: SerializeField]
-        public GameObject instance {  get; set; }
-
+      
     }
 
     

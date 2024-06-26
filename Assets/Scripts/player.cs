@@ -1,9 +1,8 @@
 using Inventory.Model;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
-public class Player : MonoBehaviour, IPointerClickHandler
+public class Player : MonoBehaviour
 {
     public float moveSpeed = 5f;
     public float maxHP = 100;
@@ -20,8 +19,6 @@ public class Player : MonoBehaviour, IPointerClickHandler
 
     public ItemData woodData;
     public ItemData uraniumData;
-
-    public HotBarModel hotBarModel;
 
     private void Start()
     {
@@ -61,9 +58,9 @@ public class Player : MonoBehaviour, IPointerClickHandler
                     Debug.Log(carriedObject.name);
 
                     if (carriedObject.name == "Wood(Clone)")
-                        inventoryController.inventoryModel.Insert(woodData, 1);
+                        inventoryController.inventoryModel.InsertItem(woodData, 1);
                     else if (carriedObject.name == "uranium(Clone)")
-                        inventoryController.inventoryModel.Insert(uraniumData, 1);
+                        inventoryController.inventoryModel.InsertItem(uraniumData, 1);
                     
                     Destroy(carriedObject);
                 }
@@ -99,23 +96,5 @@ public class Player : MonoBehaviour, IPointerClickHandler
         }
         Debug.Log("Player HP: " + currentHP);
         UIManager.Instance.UpdateHP(currentHP, maxHP); // Update HP text
-    }
-
-    //TO Lynn, I put the hotbarmodel with it functions that is useful to you so you can avoid the sphagetti code 
-    //WARNING: there a bug where you need to press 1-4 to make sure there no null
-    //removeItem(ItemData item, int amount)
-    //hotBarModel.RemoveItem(hotBarModel.getCurrentItem(), hotBarModel.getCurrentItemAmount())
-    //hotBarModel.getCurrentItem() -> return itemData
-    //hotBarModel.getCurrentItemAmount() -> return item amount in integer
-    //Also Lynn you might need to check the clicking function if you wanna press outside of player (can only click on player with the function below)
-    public void OnPointerClick(PointerEventData eventData)
-    {
-        if(eventData.button == PointerEventData.InputButton.Left)
-        {
-            //Remove upon receiving
-            Debug.Log(hotBarModel.getCurrentItem());
-            Debug.Log(hotBarModel.getCurrentItemAmount());
-        }
-        
     }
 }
