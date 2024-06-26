@@ -1,4 +1,5 @@
 using Inventory.Model;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -8,7 +9,8 @@ public class Player : MonoBehaviour
     public float maxHP = 100;
     private float currentHP;
 
-    public InventoryController inventoryController;
+    public InventoryManager inventoryManager;
+    public int maxInventorySize = 16;
 
     private GameObject carriedObject; 
     private bool isCarrying = false;
@@ -19,6 +21,8 @@ public class Player : MonoBehaviour
 
     public ItemData woodData;
     public ItemData uraniumData;
+
+    public List<SlotData> inventory = new List<SlotData>();
 
     private void Start()
     {
@@ -58,9 +62,9 @@ public class Player : MonoBehaviour
                     Debug.Log(carriedObject.name);
 
                     if (carriedObject.name == "Wood(Clone)")
-                        inventoryController.inventoryModel.InsertItem(woodData, 1);
+                        inventoryManager.insert(woodData, 1);
                     else if (carriedObject.name == "uranium(Clone)")
-                        inventoryController.inventoryModel.InsertItem(uraniumData, 1);
+                        inventoryManager.insert(uraniumData, 1);
                     
                     Destroy(carriedObject);
                 }

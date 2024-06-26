@@ -87,7 +87,7 @@ GameObject:
   - component: {fileID: 8189600354066869803}
   - component: {fileID: 8819413317768436719}
   - component: {fileID: 1919246558412102541}
-  - component: {fileID: 9148062537141621539}
+  - component: {fileID: 4202900494916925484}
   m_Layer: 0
   m_Name: Slot
   m_TagString: Untagged
@@ -155,7 +155,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &9148062537141621539
+--- !u!114 &4202900494916925484
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -164,11 +164,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 4204446604290474904}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 132b052fb81fba9419161df758a5749b, type: 3}
+  m_Script: {fileID: 11500000, guid: b4c3a2a3d20797d48b3cf217b5837b44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 0}
-  amount: 20
+  amount: 0
   texture: {fileID: 5295946318714334857}
   amountText: {fileID: 3728836239849613878}
   itemTexture: {fileID: 410407134968549869}

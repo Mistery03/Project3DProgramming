@@ -71,30 +71,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 56393199385610200}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d72670c0cfc9294ea763087d1ab60bf, type: 3}
+  m_Script: {fileID: 11500000, guid: 54c7fe0477b264a41b49c7230d6fdc24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slot: {fileID: 9148062537141621539, guid: 7182520bc4395ef40b638088e9002b62, type: 3}
-  maxInventorySize: 16
+  slot: {fileID: 0}
+  maxInventorySize: 0
   slotList: []
-  playerInventory:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  maxInventorySlots: 4
+  playerInventory: []
+  maxInventorySlots: 16
 --- !u!1 &78529438512931355
 GameObject:
   m_ObjectHideFlags: 0
@@ -129,6 +113,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 7387043833068156694}
   - {fileID: 1931568803443324261}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -247,9 +232,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 5
   maxHP: 100
-  inventoryController: {fileID: 6822750111505281473}
+  inventoryManager: {fileID: 0}
+  maxInventorySize: 16
   woodData: {fileID: 11400000, guid: b5b8df58d03d4004e9680116188637b6, type: 2}
   uraniumData: {fileID: 11400000, guid: e2185ff481e9b034ab867c21a2358a78, type: 2}
+  inventory:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &3664689245837069822
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -263,6 +266,69 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetTag: LabCube
+--- !u!1 &7933214967568797281
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7387043833068156694}
+  - component: {fileID: 8608150260526735492}
+  m_Layer: 0
+  m_Name: InventoryManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7387043833068156694
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7933214967568797281}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4178772824763784512}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8608150260526735492
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7933214967568797281}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad934dece7d941e4f8b57f9e4abd46e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventory:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  player: {fileID: 1562485012009385106}
+  maxInventorySize: 16
 --- !u!1001 &8007999912125267112
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -273,7 +339,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1716276309631686372, guid: d02507f40a913134d92efcef4b9ade62, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3129856207683513891, guid: d02507f40a913134d92efcef4b9ade62, type: 3}
       propertyPath: maxInventorySize
@@ -307,6 +373,18 @@ PrefabInstance:
       propertyPath: playerInventory.Array.size
       value: 16
       objectReference: {fileID: 0}
+    - target: {fileID: 3668444934652484880, guid: d02507f40a913134d92efcef4b9ade62, type: 3}
+      propertyPath: hotbarObject
+      value: 
+      objectReference: {fileID: 56393199385610200}
+    - target: {fileID: 3668444934652484880, guid: d02507f40a913134d92efcef4b9ade62, type: 3}
+      propertyPath: inventoryView
+      value: 
+      objectReference: {fileID: 2741725989660469990}
+    - target: {fileID: 3668444934652484880, guid: d02507f40a913134d92efcef4b9ade62, type: 3}
+      propertyPath: inventoryManager
+      value: 
+      objectReference: {fileID: 8608150260526735492}
     - target: {fileID: 4416121427671988877, guid: d02507f40a913134d92efcef4b9ade62, type: 3}
       propertyPath: m_Spacing.x
       value: 10
@@ -319,9 +397,21 @@ PrefabInstance:
       propertyPath: m_ConstraintCount
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 5273345998574245454, guid: d02507f40a913134d92efcef4b9ade62, type: 3}
+      propertyPath: slot
+      value: 
+      objectReference: {fileID: 4202900494916925484, guid: 7182520bc4395ef40b638088e9002b62, type: 3}
+    - target: {fileID: 5273345998574245454, guid: d02507f40a913134d92efcef4b9ade62, type: 3}
+      propertyPath: inventoryManager
+      value: 
+      objectReference: {fileID: 8608150260526735492}
     - target: {fileID: 8483259537878312979, guid: d02507f40a913134d92efcef4b9ade62, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: -215
+      objectReference: {fileID: 0}
+    - target: {fileID: 8492499619028916416, guid: d02507f40a913134d92efcef4b9ade62, type: 3}
+      propertyPath: m_Name
+      value: InventoryView
       objectReference: {fileID: 0}
     - target: {fileID: 8497288549046077901, guid: d02507f40a913134d92efcef4b9ade62, type: 3}
       propertyPath: m_RootOrder
@@ -369,9 +459,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8659899752073474051, guid: d02507f40a913134d92efcef4b9ade62, type: 3}
       propertyPath: m_Name
-      value: Inventory
+      value: InventoryController
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3570622702610976105, guid: d02507f40a913134d92efcef4b9ade62, type: 3}
+    - {fileID: 3129856207683513891, guid: d02507f40a913134d92efcef4b9ade62, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 2455082526269340374, guid: d02507f40a913134d92efcef4b9ade62, type: 3}
@@ -384,22 +476,22 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8497288549046077901, guid: d02507f40a913134d92efcef4b9ade62, type: 3}
   m_PrefabInstance: {fileID: 8007999912125267112}
   m_PrefabAsset: {fileID: 0}
---- !u!224 &5561969665625327230 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 2455082526269340374, guid: d02507f40a913134d92efcef4b9ade62, type: 3}
-  m_PrefabInstance: {fileID: 8007999912125267112}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &6822750111505281473 stripped
+--- !u!114 &2741725989660469990 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3570622702610976105, guid: d02507f40a913134d92efcef4b9ade62, type: 3}
+  m_CorrespondingSourceObject: {fileID: 5273345998574245454, guid: d02507f40a913134d92efcef4b9ade62, type: 3}
   m_PrefabInstance: {fileID: 8007999912125267112}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b6392edadd72dab4892ebe30f555b20c, type: 3}
+  m_Script: {fileID: 11500000, guid: 3dc86e770f25f064f96cfebcb6f555f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!224 &5561969665625327230 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 2455082526269340374, guid: d02507f40a913134d92efcef4b9ade62, type: 3}
+  m_PrefabInstance: {fileID: 8007999912125267112}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &8715399074504125004 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1716276309631686372, guid: d02507f40a913134d92efcef4b9ade62, type: 3}
