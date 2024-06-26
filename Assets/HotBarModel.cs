@@ -24,7 +24,7 @@ public class HotBarModel : MonoBehaviour
             slotList.Add(slotToBeAdded);
         }
 
-        UpdateSlots();
+       
     }
 
     public void UpdateSlots()

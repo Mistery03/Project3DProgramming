@@ -44,12 +44,15 @@ public class InventoryController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.I))
         {
             inventoryObject.SetActive(!inventoryObject.activeSelf);
-            hotbarObject.SetActive(!hotbarObject.activeSelf);
+     
         }
             
 
         if (Input.GetKeyDown(KeyCode.L))
-            inventoryModel.InsertItem(testApple, 1);
+            inventoryModel.Insert(testApple, 1);
+        
+        if(Input.GetKeyDown(KeyCode.K))
+            inventoryModel.Remove(testApple,1);
     }
 
    

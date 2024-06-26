@@ -58,9 +58,9 @@ public class Player : MonoBehaviour
                     Debug.Log(carriedObject.name);
 
                     if (carriedObject.name == "Wood(Clone)")
-                        inventoryController.inventoryModel.InsertItem(woodData, 1);
+                        inventoryController.inventoryModel.Insert(woodData, 1);
                     else if (carriedObject.name == "uranium(Clone)")
-                        inventoryController.inventoryModel.InsertItem(uraniumData, 1);
+                        inventoryController.inventoryModel.Insert(uraniumData, 1);
                     
                     Destroy(carriedObject);
                 }

@@ -144,7 +144,6 @@ GameObject:
   m_Component:
   - component: {fileID: 381239937266478603}
   - component: {fileID: 7754567240313917348}
-  - component: {fileID: 552559404566394513}
   - component: {fileID: 419069995695044840}
   m_Layer: 0
   m_Name: InventoryGrid
@@ -197,39 +196,6 @@ MonoBehaviour:
   m_Spacing: {x: 0, y: 0}
   m_Constraint: 1
   m_ConstraintCount: 9
---- !u!114 &552559404566394513
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2915836451580984952}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7157215cf76fc6942b305c713916ea2b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  slot: {fileID: 9148062537141621539, guid: 7182520bc4395ef40b638088e9002b62, type: 3}
-  maxInventorySize: 16
-  slotList: []
-  maxInventorySlots: 16
-  playerInventory:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!114 &419069995695044840
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -245,3 +211,5 @@ MonoBehaviour:
   slot: {fileID: 9148062537141621539, guid: 7182520bc4395ef40b638088e9002b62, type: 3}
   maxInventorySize: 9
   slotList: []
+  playerInventory: []
+  maxInventorySlots: 16
