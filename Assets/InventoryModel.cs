@@ -6,9 +6,8 @@ using UnityEngine;
 using UnityEngine.UIElements;
 
 
-public class InventoryView : MonoBehaviour
+public class InventoryModel : MonoBehaviour
 {
-    public InventoryManager inventoryManager;
 
     [SerializeField] InventorySlot slot;
     [SerializeField] int maxInventorySize;
@@ -22,7 +21,6 @@ public class InventoryView : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
         Debug.Log(playerInventory.Count);
         for (int i = 0; i < maxInventorySize; i++) 
         {
@@ -33,13 +31,7 @@ public class InventoryView : MonoBehaviour
         }
 
         UpdateSlots();
-        inventoryManager.OnInventoryChanged += OnInventoryChanged;
-    }
 
-    private void OnInventoryChanged(List<SlotData> inventory)
-    {
-        // Call update_slots logic here
-        UpdateSlots();
     }
 
     public void UpdateSlots()

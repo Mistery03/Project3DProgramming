@@ -325,7 +325,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8483259537878312979}
   - component: {fileID: 4416121427671988877}
-  - component: {fileID: 5273345998574245454}
+  - component: {fileID: 3129856207683513891}
   m_Layer: 0
   m_Name: InventoryGrid
   m_TagString: Untagged
@@ -377,7 +377,7 @@ MonoBehaviour:
   m_Spacing: {x: 0, y: 0}
   m_Constraint: 1
   m_ConstraintCount: 5
---- !u!114 &5273345998574245454
+--- !u!114 &3129856207683513891
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -386,15 +386,32 @@ MonoBehaviour:
   m_GameObject: {fileID: 8492499619028916416}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3dc86e770f25f064f96cfebcb6f555f2, type: 3}
+  m_Script: {fileID: 11500000, guid: 7157215cf76fc6942b305c713916ea2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventoryManager: {fileID: 0}
-  slot: {fileID: 4202900494916925484, guid: 7182520bc4395ef40b638088e9002b62, type: 3}
-  maxInventorySize: 0
+  slot: {fileID: 9148062537141621539, guid: 7182520bc4395ef40b638088e9002b62, type: 3}
+  maxInventorySize: 18
   slotList: []
-  maxInventorySlots: 16
-  playerInventory: []
+  maxInventorySlots: 18
+  playerInventory:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1 &8659899752073474051
 GameObject:
   m_ObjectHideFlags: 0
@@ -404,7 +421,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8497288549046077901}
-  - component: {fileID: 3668444934652484880}
+  - component: {fileID: 3570622702610976105}
   m_Layer: 0
   m_Name: Inventory
   m_TagString: Untagged
@@ -428,7 +445,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3668444934652484880
+--- !u!114 &3570622702610976105
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -437,14 +454,29 @@ MonoBehaviour:
   m_GameObject: {fileID: 8659899752073474051}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d4a129e32edc564db5b48ca364390f7, type: 3}
+  m_Script: {fileID: 11500000, guid: b6392edadd72dab4892ebe30f555b20c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   inventoryObject: {fileID: 1716276309631686372}
-  hotbarObject: {fileID: 0}
-  inventoryManager: {fileID: 0}
-  inventoryView: {fileID: 0}
-  playerInventory: []
-  maxInventorySlots: 16
+  inventoryModel: {fileID: 3129856207683513891}
+  playerInventory:
+  - {fileID: 11400000, guid: d31acf509c7005c45ac726b6a989d6f6, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  maxInventorySlots: 18
   testApple: {fileID: 11400000, guid: 09c621cf1d7215940bd00b04352a9475, type: 2}
-  hotBarModel: {fileID: 0}

@@ -7,12 +7,7 @@ using static UnityEditor.Progress;
 public class InventoryController : MonoBehaviour
 {
     [SerializeField] GameObject inventoryObject, hotbarObject;
-
-    [Header("Inventory MVC")]
-    public InventoryManager inventoryManager;
-    public InventoryView inventoryView;
-
-    [Header("Inventory Settings")]
+    public InventoryModel inventoryModel;
     public List<SlotData> playerInventory = new List<SlotData>();
     public int maxInventorySlots = 16;
 
@@ -22,21 +17,21 @@ public class InventoryController : MonoBehaviour
 
     private void Start()
     {
-        inventoryView.inventoryManager = inventoryManager;  
-        inventoryView.playerInventory = inventoryManager.inventory;
-        inventoryView.maxInventorySlots = inventoryManager.maxInventorySize;
+        inventoryModel.playerInventory = playerInventory;
+        inventoryModel.maxInventorySlots = maxInventorySlots;
 
-        //hotBarModel.playerInventory = playerInventory;
+        hotBarModel.playerInventory = playerInventory;
     
     }
 
     // Update is called once per frame
     void Update()
     {
-        inventoryView.playerInventory = playerInventory;
+        inventoryModel.playerInventory = playerInventory;
+        inventoryModel.maxInventorySlots = maxInventorySlots;
 
-        //hotBarModel.playerInventory = playerInventory;
-        //hotBarModel.maxInventorySlots = maxInventorySlots;
+        hotBarModel.playerInventory = playerInventory;
+        hotBarModel.maxInventorySlots = maxInventorySlots;
 
         toggleInventory();
        
@@ -51,10 +46,10 @@ public class InventoryController : MonoBehaviour
             inventoryObject.SetActive(!inventoryObject.activeSelf);
             hotbarObject.SetActive(!hotbarObject.activeSelf);
         }
-
+            
 
         if (Input.GetKeyDown(KeyCode.L))
-            inventoryManager.insert(testApple, 1);
+            inventoryModel.InsertItem(testApple, 1);
     }
 
    
