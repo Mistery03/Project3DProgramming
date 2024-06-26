@@ -46,4 +46,6 @@ public class UIManager : MonoBehaviour
     {
         SceneManager.LoadScene("LabArea");
     }
+
+    
 }
