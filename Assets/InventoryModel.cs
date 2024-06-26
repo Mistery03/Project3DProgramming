@@ -59,34 +59,6 @@ public class InventoryModel : MonoBehaviour
         }
     }
 
-   
-
-    public void RemoveItem(ItemData item, int amount)
-    {
-        foreach (var slot in slotList)
-        {
-            if (slot.item == item)
-            {
-                if (slot.amount >= amount)
-                {
-                    slot.amount -= amount;
-                    if (slot.amount == 0)
-                    {
-                        slot.ClearSlot();
-                    }
-                    slot.UpdateSlot();
-                    return;
-                }
-                else
-                {
-                    amount -= slot.amount;
-                    slot.ClearSlot();
-                    slot.UpdateSlot();
-                }
-            }
-        }
-    }
-
     // Insert item logic
     public void Insert(ItemData droppedItem, int amount)
     {
