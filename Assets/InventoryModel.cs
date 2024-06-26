@@ -21,6 +21,7 @@ public class InventoryModel : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Debug.Log(playerInventory.Count);
         for (int i = 0; i < maxInventorySize; i++) 
         {
             InventorySlot slotToBeAdded = Instantiate(slot);

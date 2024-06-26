@@ -15,6 +15,15 @@ public class InventoryController : MonoBehaviour
 
     public HotBarModel hotBarModel;
 
+    private void Start()
+    {
+        inventoryModel.playerInventory = playerInventory;
+        inventoryModel.maxInventorySlots = maxInventorySlots;
+
+        hotBarModel.playerInventory = playerInventory;
+    
+    }
+
     // Update is called once per frame
     void Update()
     {

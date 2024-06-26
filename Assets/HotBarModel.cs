@@ -16,7 +16,7 @@ public class HotBarModel : MonoBehaviour
 
     void Start()
     {
-        for (int i = 0; i < maxInventorySize; i++)
+        for (int i = 0; i < maxInventorySlots; i++)
         {
             InventorySlot slotToBeAdded = Instantiate(slot);
 
@@ -27,15 +27,9 @@ public class HotBarModel : MonoBehaviour
         UpdateSlots();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void UpdateSlots()
     {
-        for (int i = 0; i < maxInventorySize; i++)
+        for (int i = 0; i < maxInventorySlots; i++)
         {
             if (playerInventory[i] != null)
             {
