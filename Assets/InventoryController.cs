@@ -6,7 +6,7 @@ using static UnityEditor.Progress;
 
 public class InventoryController : MonoBehaviour
 {
-    [SerializeField] GameObject inventoryObject, hotbarObject,chemicalList;
+    [SerializeField] GameObject inventoryObject;
     public InventoryModel inventoryModel;
     public List<SlotData> playerInventory = new List<SlotData>();
     public int maxInventorySlots = 16;
@@ -32,18 +32,6 @@ public class InventoryController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.L))
             inventoryModel.InsertItem(testApple, 1);
-     
-        }
-
-        if (Input.GetKeyDown(KeyCode.C))
-            chemicalList.SetActive(!chemicalList.activeSelf);
-
-
-         if (Input.GetKeyDown(KeyCode.L))
-            inventoryModel.Insert(testApple, 1);
-        
-        if(Input.GetKeyDown(KeyCode.K))
-            inventoryModel.Remove(testApple,1);
     }
 
    
