@@ -20,6 +20,12 @@ public class Player : MonoBehaviour
     public ItemData woodData;
     public ItemData uraniumData;
 
+    public GameObject taskUI;
+    public TaskPanel taskPanel;
+    public bool isTask1done = false;
+    public bool isTask2done = false;
+    public bool isTask3done = false;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -65,6 +71,19 @@ public class Player : MonoBehaviour
                     Destroy(carriedObject);
                 }
             }    
+        }else if (Input.GetKeyDown(KeyCode.B))
+        {
+            taskUI = GameObject.Find("TaskPanel 1");
+            if (taskUI != null)
+            {
+                taskUI.SetActive(!taskUI.activeSelf);
+                if (taskUI.activeSelf)
+                {
+                    Debug.Log("Taskui activated");
+                    
+                }
+
+            }
         }
     }
 
@@ -97,4 +116,5 @@ public class Player : MonoBehaviour
         Debug.Log("Player HP: " + currentHP);
         UIManager.Instance.UpdateHP(currentHP, maxHP); // Update HP text
     }
+
 }
