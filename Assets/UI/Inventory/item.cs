@@ -9,10 +9,14 @@ public class item : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
     public bool resetPositionOnRealese = true;
 
     Vector2 _startPosition;
+    Transform parentAfterDrag;
     public void OnBeginDrag(PointerEventData eventData)
     {
+        
         if(resetPositionOnRealese)
             _startPosition = transform.position;
+        
+        
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -26,13 +30,18 @@ public class item : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
         EventSystem.current.RaycastAll(eventData,hits);
 
         var hit = hits.FirstOrDefault(t => t.gameObject.CompareTag("Droppable"));
-        if(hit.isValid)
+        var item = hits.FirstOrDefault(t => t.gameObject.CompareTag("item"));
+        if (hit.isValid && !item.isValid)
         {
             return;
         }
 
         if (resetPositionOnRealese)
+        {
             transform.position = _startPosition;
+           
+        }
+            
     }
 
     // Start is called before the first frame update

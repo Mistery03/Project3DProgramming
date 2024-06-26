@@ -20,7 +20,7 @@ public class InventoryController : MonoBehaviour
         inventoryModel.playerInventory = playerInventory;
         inventoryModel.maxInventorySlots = maxInventorySlots;
 
-        hotBarModel.playerInventory = playerInventory;
+   
     
     }
 
@@ -28,10 +28,8 @@ public class InventoryController : MonoBehaviour
     void Update()
     {
         inventoryModel.playerInventory = playerInventory;
-        inventoryModel.maxInventorySlots = maxInventorySlots;
 
-        hotBarModel.playerInventory = playerInventory;
-        hotBarModel.maxInventorySlots = maxInventorySlots;
+     
 
         toggleInventory();
        

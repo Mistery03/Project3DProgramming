@@ -8,6 +8,8 @@ TagManager:
   - LabCube
   - Enemy
   - DeathPoint
+  - Droppable
+  - item
   layers:
   - Default
   - TransparentFX

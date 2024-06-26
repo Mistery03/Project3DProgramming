@@ -74,7 +74,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d72670c0cfc9294ea763087d1ab60bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slot: {fileID: 9148062537141621539, guid: 7182520bc4395ef40b638088e9002b62, type: 3}
+  slot: {fileID: 3881378424409094576, guid: 5382d3b2fee766442a569db7b92e0a7e, type: 3}
   maxInventorySize: 4
   slotList: []
   playerInventory:
@@ -83,6 +83,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   maxInventorySlots: 4
+  playerPos: {fileID: 4178772824763784512}
 --- !u!1 &78529438512931355
 GameObject:
   m_ObjectHideFlags: 0
@@ -233,11 +234,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71d35f9278ca2c748a4934382ba391a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
+  moveSpeed: 40
   maxHP: 100
   inventoryController: {fileID: 6822750111505281473}
   woodData: {fileID: 11400000, guid: b5b8df58d03d4004e9680116188637b6, type: 2}
   uraniumData: {fileID: 11400000, guid: e2185ff481e9b034ab867c21a2358a78, type: 2}
+  hotBarModel: {fileID: 6787489804129714332}
 --- !u!114 &3664689245837069822
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -263,6 +265,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3129856207683513891, guid: d02507f40a913134d92efcef4b9ade62, type: 3}
+      propertyPath: playerPos
+      value: 
+      objectReference: {fileID: 4178772824763784512}
     - target: {fileID: 3129856207683513891, guid: d02507f40a913134d92efcef4b9ade62, type: 3}
       propertyPath: hotBarModel
       value: 

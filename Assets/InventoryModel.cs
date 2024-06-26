@@ -18,6 +18,8 @@ public class InventoryModel : MonoBehaviour
 
     public HotBarModel hotBarModel;
 
+    public Transform playerPos;
+
     const int MAXSTACKSIZE = 10;
 
     // Start is called before the first frame update
@@ -26,7 +28,10 @@ public class InventoryModel : MonoBehaviour
         Debug.Log(playerInventory.Count);
         for (int i = 0; i < maxInventorySize; i++) 
         {
-            InventorySlot slotToBeAdded = Instantiate(slot);
+           InventorySlot slotToBeAdded = Instantiate(slot);
+
+            slotToBeAdded.inventoryModel = this;
+            slotToBeAdded.hotBarModel = hotBarModel;
 
            slotToBeAdded.transform.SetParent(this.transform,false);
            slotList.Add(slotToBeAdded);
@@ -154,7 +159,7 @@ public class InventoryModel : MonoBehaviour
      
     }
 
-    public void Remove(ItemData selectedItem, int amount)
+    public void Remove(ItemData selectedItem, int amount,bool isRemovingItemToWorld = true)
     {
         int remainingToRemove = amount;
 
@@ -175,17 +180,23 @@ public class InventoryModel : MonoBehaviour
                         // Clear the slot if amount becomes zero
                         if (playerInventory[index].amount == 0)
                         {
+                           
                             playerInventory[index] = null;
                         }
 
                         removed = true;
+                       
                         break;
                     }
                     else
                     {
+                        
+
                         remainingToRemove -= playerInventory[index].amount;
+                        
                         playerInventory[index] = null;
                         removed = true;
+                       
                     }
                 }
             }
@@ -196,7 +207,8 @@ public class InventoryModel : MonoBehaviour
                 break;
             }
         }
-
+        if(isRemovingItemToWorld)
+            Instantiate(selectedItem.instance, playerPos.position, Quaternion.identity);
         // Communicate to other objects
         UpdateSlots();
     }
