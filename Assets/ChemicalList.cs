@@ -11,6 +11,12 @@ public class ChemicalList : MonoBehaviour
     public TextMeshProUGUI mercuryAmountText;
     public TextMeshProUGUI uraniumAmountText;
 
+    public int hydrogenAmount = 0;
+    public int oxygenAmount = 0;
+    public int carbonAmount = 0;
+    public int mercuryAmount = 0;
+    public int uraniumAmount = 0;
+
     int defaultValue = 0;
     void Start()
     {

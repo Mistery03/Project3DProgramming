@@ -23,7 +23,7 @@ public class Player : MonoBehaviour, IPointerClickHandler
     public ItemData uraniumData;
 
     public HotBarModel hotBarModel;
-    public GameObject taskUI;
+    public GameObject taskUI, hotbarObject;
     public TaskPanel taskPanel;
 
     public bool isTask1done = false;
@@ -40,6 +40,8 @@ public class Player : MonoBehaviour, IPointerClickHandler
     public LineRenderer aimLineRenderer;
 
     public Text hpText;
+
+    public ChemicalList chemicalList;
 
     private void Start()
     {
