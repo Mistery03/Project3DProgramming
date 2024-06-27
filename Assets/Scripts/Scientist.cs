@@ -23,7 +23,7 @@ public class Scientist : MonoBehaviour, IPointerClickHandler
             checkTask1();
         }
     }
-
+    void Awake() { player = manager.getPlayerScript(); }
     // Start is called before the first frame update
     void Start()
     {
@@ -33,7 +33,7 @@ public class Scientist : MonoBehaviour, IPointerClickHandler
     // Update is called once per frame
     void Update()
     {
-        
+        player = manager.getPlayerScript();
     }
 
     void checkTask1()
