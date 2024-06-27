@@ -22,6 +22,11 @@ public class Player : MonoBehaviour, IPointerClickHandler
     public ItemData uraniumData;
 
     public HotBarModel hotBarModel;
+    public GameObject taskUI;
+    public TaskPanel taskPanel;
+    public bool isTask1done = false;
+    public bool isTask2done = false;
+    public bool isTask3done = false;
 
     private void Start()
     {
@@ -68,6 +73,19 @@ public class Player : MonoBehaviour, IPointerClickHandler
                     Destroy(carriedObject);
                 }
             }    
+        }else if (Input.GetKeyDown(KeyCode.B))
+        {
+            taskUI = GameObject.Find("TaskPanel 1");
+            if (taskUI != null)
+            {
+                taskUI.SetActive(!taskUI.activeSelf);
+                if (taskUI.activeSelf)
+                {
+                    Debug.Log("Taskui activated");
+                    
+                }
+
+            }
         }
     }
 

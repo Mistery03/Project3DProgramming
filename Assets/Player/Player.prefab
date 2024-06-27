@@ -120,7 +120,7 @@ Transform:
   m_Children:
   - {fileID: 1931568803443324261}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &3869485933166471196
 MeshFilter:
@@ -240,6 +240,10 @@ MonoBehaviour:
   woodData: {fileID: 11400000, guid: b5b8df58d03d4004e9680116188637b6, type: 2}
   uraniumData: {fileID: 11400000, guid: e2185ff481e9b034ab867c21a2358a78, type: 2}
   hotBarModel: {fileID: 6787489804129714332}
+  taskUI: {fileID: 8341555366938360189, guid: 674cd0246e646034381464ff138ba5a7, type: 3}
+  isTask1done: 0
+  isTask2done: 0
+  isTask3done: 0
 --- !u!114 &3664689245837069822
 MonoBehaviour:
   m_ObjectHideFlags: 0
