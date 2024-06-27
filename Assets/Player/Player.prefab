@@ -376,6 +376,7 @@ MonoBehaviour:
   uraniumData: {fileID: 11400000, guid: e2185ff481e9b034ab867c21a2358a78, type: 2}
   hotBarModel: {fileID: 6787489804129714332}
   taskUI: {fileID: 3313314435683802394}
+  hotbarObject: {fileID: 56393199385610200}
   taskPanel: {fileID: 4640564556200027883}
   isTask1done: 0
   isTask2done: 0
@@ -385,6 +386,7 @@ MonoBehaviour:
   aimRadius: 5
   aimLineRenderer: {fileID: 0}
   hpText: {fileID: 8027456522550674271}
+  chemicalList: {fileID: 2497342354706292405}
 --- !u!114 &3664689245837069822
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2296,6 +2298,11 @@ MonoBehaviour:
   carbonAmountText: {fileID: 3851178915117273022}
   mercuryAmountText: {fileID: 4239028318184843717}
   uraniumAmountText: {fileID: 1430362854150629615}
+  hydrogenAmount: 0
+  oxygenAmount: 0
+  carbonAmount: 0
+  mercuryAmount: 0
+  uraniumAmount: 0
 --- !u!1 &3835239508957350227
 GameObject:
   m_ObjectHideFlags: 0
@@ -3779,6 +3786,10 @@ PrefabInstance:
       propertyPath: inventory
       value: 
       objectReference: {fileID: 8715399074504125004}
+    - target: {fileID: 3570622702610976105, guid: d02507f40a913134d92efcef4b9ade62, type: 3}
+      propertyPath: testApple
+      value: 
+      objectReference: {fileID: 11400000, guid: b5b8df58d03d4004e9680116188637b6, type: 2}
     - target: {fileID: 3570622702610976105, guid: d02507f40a913134d92efcef4b9ade62, type: 3}
       propertyPath: hotBarModel
       value: 
