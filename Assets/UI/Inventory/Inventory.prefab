@@ -137,7 +137,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -144, y: 283}
+  m_AnchoredPosition: {x: -144, y: 258}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0, y: 1}
 --- !u!222 &728322777353675664
@@ -274,8 +274,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 539.6416, y: -0.0009465}
-  m_SizeDelta: {x: 520.7169, y: 899.8}
+  m_AnchoredPosition: {x: -4, y: -0.0009465}
+  m_SizeDelta: {x: 1200, y: 810}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7705622305566196198
 CanvasRenderer:
@@ -350,7 +350,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -250, y: 177}
+  m_AnchoredPosition: {x: -298, y: 177}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &4416121427671988877
@@ -390,10 +390,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slot: {fileID: 9148062537141621539, guid: 7182520bc4395ef40b638088e9002b62, type: 3}
-  maxInventorySize: 16
+  maxInventorySize: 18
   slotList: []
-  maxInventorySlots: 16
+  maxInventorySlots: 18
   playerInventory:
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -474,5 +476,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  maxInventorySlots: 16
+  - {fileID: 0}
+  - {fileID: 0}
+  maxInventorySlots: 18
   testApple: {fileID: 11400000, guid: 09c621cf1d7215940bd00b04352a9475, type: 2}
