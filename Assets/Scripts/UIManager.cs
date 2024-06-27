@@ -34,6 +34,11 @@ public class UIManager : MonoBehaviour
         hpText.text = "HP: " + Mathf.Floor(currentHP) + "/" + Mathf.Floor(maxHP);
     }
 
+    public void setHpText(Text hpText)
+    {
+        this.hpText = hpText;
+    }
+
     public void ShowDeathPanel()
     {
         if (deathPanel != null)

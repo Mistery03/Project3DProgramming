@@ -1,6 +1,7 @@
 using Inventory.Model;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour, IPointerClickHandler
@@ -38,13 +39,17 @@ public class Player : MonoBehaviour, IPointerClickHandler
 
     public LineRenderer aimLineRenderer;
 
+    public Text hpText;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
         currentHP = maxHP;
-        UIManager.Instance.UpdateHP(currentHP, maxHP); // Initialize HP text
 
+        UIManager.Instance.setHpText(hpText);
+        UIManager.Instance.UpdateHP(currentHP, maxHP); // Initialize HP text
+        
         gameManager = FindObjectOfType<GameManager>();
         if (gameManager == null)
         {
@@ -121,7 +126,7 @@ public class Player : MonoBehaviour, IPointerClickHandler
             }    
         }else if (Input.GetKeyDown(KeyCode.B))
         {
-            taskUI = GameObject.Find("TaskPanel 1");
+         
             if (taskUI != null)
             {
                 taskUI.SetActive(!taskUI.activeSelf);
