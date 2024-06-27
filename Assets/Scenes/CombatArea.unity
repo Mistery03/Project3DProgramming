@@ -1342,7 +1342,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deathPanel: {fileID: 1855309844}
-  hpText: {fileID: 65160712}
+  hpText: {fileID: 0}
 --- !u!1 &1855309844
 GameObject:
   m_ObjectHideFlags: 0

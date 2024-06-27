@@ -12,7 +12,7 @@ public class Scientist : MonoBehaviour, IPointerClickHandler
     public GameObject Task3Convo;
     public Dialogue dialougue1;
     public Player player;
-    public GameManager manager;
+    public GameManager gameManager;
 
     
     public void OnPointerClick(PointerEventData eventData)
@@ -23,17 +23,27 @@ public class Scientist : MonoBehaviour, IPointerClickHandler
             checkTask1();
         }
     }
-    void Awake() { player = manager.getPlayerScript(); }
     // Start is called before the first frame update
     void Start()
     {
-        player = manager.getPlayerScript();
+        player = gameManager.getPlayerScript();
+        gameManager = FindObjectOfType<GameManager>();
+        if (gameManager == null)
+        {
+            Debug.LogError("GameManager not found in the scene.");
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        player = manager.getPlayerScript();
+        gameManager = FindObjectOfType<GameManager>();
+        if (gameManager == null)
+        {
+            Debug.LogError("GameManager not found in the scene.");
+        }
+
+        player = gameManager.getPlayerScript();
     }
 
     void checkTask1()

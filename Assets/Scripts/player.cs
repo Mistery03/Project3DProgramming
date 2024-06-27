@@ -1,11 +1,12 @@
 using Inventory.Model;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour, IPointerClickHandler
 {
-    public float moveSpeed = 5f;
+    public float moveSpeed = 20f;
     public float maxHP = 100;
     private float currentHP;
 
@@ -24,22 +25,47 @@ public class Player : MonoBehaviour, IPointerClickHandler
     public HotBarModel hotBarModel;
     public GameObject taskUI;
     public TaskPanel taskPanel;
+
     public bool isTask1done = false;
     public bool isTask2done = false;
     public bool isTask3done = false;
+
+    public float throwForce = 10f;
+    public float maxThrowForce = 30f;
+    public float aimRadius = 5f;
+
+    private bool isAiming = false;
+    private float currentThrowForce;
+
+    public LineRenderer aimLineRenderer;
+
+    public Text hpText;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
         currentHP = maxHP;
-        UIManager.Instance.UpdateHP(currentHP, maxHP); // Initialize HP text
 
+        UIManager.Instance.setHpText(hpText);
+        UIManager.Instance.UpdateHP(currentHP, maxHP); // Initialize HP text
+        
         gameManager = FindObjectOfType<GameManager>();
         if (gameManager == null)
         {
             Debug.LogError("GameManager not found in the scene.");
         }
+
+        if (aimLineRenderer == null)
+        {
+            Debug.LogError("Aim LineRenderer not assigned.");
+        }
+        else
+        {
+            aimLineRenderer.positionCount = 2; // Set to 2 points (start and end)
+            aimLineRenderer.enabled = false; // Disable initially
+        }
+
     }
 
     private void Update()
@@ -53,6 +79,31 @@ public class Player : MonoBehaviour, IPointerClickHandler
         rb.velocity = new Vector3(movement.x, rb.velocity.y, movement.z);
 
         if (Input.GetMouseButtonDown(0))
+        {
+            TryPickUpObject();
+        }
+
+        if (Input.GetMouseButtonDown(1))
+        {
+            StartAiming();
+        }
+
+        if (Input.GetMouseButtonUp(1))
+        {
+            ThrowObject();
+        }
+
+        if (isAiming)
+        {
+            AimObject();
+        }
+
+        if (isCarrying && carriedObject != null)
+        {
+            CarryObject();
+        }
+
+        if (Input.GetMouseButtonDown(1))
         {
             RaycastHit hit;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -75,7 +126,7 @@ public class Player : MonoBehaviour, IPointerClickHandler
             }    
         }else if (Input.GetKeyDown(KeyCode.B))
         {
-            taskUI = GameObject.Find("TaskPanel 1");
+         
             if (taskUI != null)
             {
                 taskUI.SetActive(!taskUI.activeSelf);
@@ -88,6 +139,91 @@ public class Player : MonoBehaviour, IPointerClickHandler
             }
         }
     }
+
+
+    private void TryPickUpObject()
+    {
+        RaycastHit hit;
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        if (Physics.Raycast(ray, out hit))
+        {
+            // Check if the object hit by the raycast is carryable
+            if (hit.collider.CompareTag("Carryable"))
+            {
+                carriedObject = hit.collider.gameObject;
+                isCarrying = true;
+
+                carriedObject.GetComponent<Rigidbody>().isKinematic = true; // Disable physics while carrying
+            }
+        }
+    }
+
+    private void CarryObject()
+    {
+        if (carriedObject != null)
+        {
+            // Rotate the object to face the mouse position
+            Vector3 mousePosition = Input.mousePosition;
+            mousePosition.z = Camera.main.WorldToScreenPoint(transform.position).z;
+            Vector3 worldMousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
+
+            Vector3 directionToMouse = (worldMousePosition - transform.position).normalized;
+            carriedObject.transform.position = transform.position + directionToMouse * carryOffset.magnitude;
+            carriedObject.transform.rotation = Quaternion.LookRotation(directionToMouse);
+        }
+    }
+
+    private void StartAiming()
+    {
+        if (isCarrying && carriedObject != null)
+        {
+            isAiming = true;
+            currentThrowForce = throwForce;
+            aimLineRenderer.enabled = true; // Enable the line renderer
+        }
+    }
+
+    private void AimObject()
+    {
+        if (isAiming)
+        {
+            currentThrowForce += Time.deltaTime * throwForce; // Increase throw force over time
+            if (currentThrowForce > maxThrowForce)
+            {
+                currentThrowForce = maxThrowForce;
+            }
+
+            // Update aim line renderer
+            Vector3 mousePosition = Input.mousePosition;
+            mousePosition.z = Camera.main.WorldToScreenPoint(transform.position).z;
+            Vector3 worldMousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
+
+            aimLineRenderer.SetPosition(0, transform.position + carryOffset); // Start point
+            aimLineRenderer.SetPosition(1, worldMousePosition); // End point
+        }
+    }
+
+    private void ThrowObject()
+    {
+        if (isAiming && isCarrying && carriedObject != null)
+        {
+            carriedObject.GetComponent<Rigidbody>().isKinematic = false; // Re-enable physics
+
+            Vector3 mousePosition = Input.mousePosition;
+            mousePosition.z = Camera.main.WorldToScreenPoint(transform.position).z;
+            Vector3 worldMousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
+
+            Vector3 throwDirection = (worldMousePosition - transform.position).normalized;
+
+            carriedObject.GetComponent<Rigidbody>().AddForce(throwDirection * currentThrowForce, ForceMode.VelocityChange);
+
+            carriedObject = null;
+            isCarrying = false;
+            isAiming = false;
+            aimLineRenderer.enabled = false; // Disable the line renderer
+        }
+    }
+
 
     private void OnCollisionEnter(Collision collision)
     {
