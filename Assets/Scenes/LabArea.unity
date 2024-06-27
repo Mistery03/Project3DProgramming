@@ -322,6 +322,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 290696748412495302, guid: b331915b3c9a1af47a21b0863b6ed2b6, type: 3}
+      propertyPath: lines.Array.data[2]
+      value: Can you find me an apple, stick and uranium?
+      objectReference: {fileID: 0}
     - target: {fileID: 5394158224605856575, guid: b331915b3c9a1af47a21b0863b6ed2b6, type: 3}
       propertyPath: m_Name
       value: Canvas
@@ -914,7 +918,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textComponent: {fileID: 1438534185}
   lines:
-  - Thanks
+  - Thanks for item. If you want to know more about the item, talk to me later.
   textSpeed: 0.2
 --- !u!114 &939769197
 MonoBehaviour:
@@ -1813,7 +1817,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textComponent: {fileID: 0}
   lines:
-  - Explanation
+  - Explanation Apple
+  - Explanation Wood
+  - Explanation Uranium
   textSpeed: 0.2
 --- !u!114 &1600091343
 MonoBehaviour:

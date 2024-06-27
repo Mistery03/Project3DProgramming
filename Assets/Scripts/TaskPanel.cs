@@ -10,6 +10,7 @@ public class TaskPanel : MonoBehaviour
     public GameObject task1;
     public GameObject task2;
     public GameObject task3;
+    public GameObject taskComplete;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,14 +22,18 @@ public class TaskPanel : MonoBehaviour
     {
         if(player.isTask1done == true)
         {
-            task1.SetActive(!task1.activeSelf);
+            task1.SetActive(true);
         }
         else if(player.isTask2done == true)
         {
-            task2.SetActive(!task2.activeSelf);
+            task2.SetActive(true);
         }else if(player.isTask3done == true)
         {
-            task3.SetActive(!task3.activeSelf);
+            task3.SetActive(true);
+        }
+        else if(player.isTask1done==true && player.isTask2done == true && player.isTask3done == true)
+        {
+            taskComplete.SetActive(true);
         }
     }
 }

@@ -21,14 +21,18 @@ public class Player : MonoBehaviour, IPointerClickHandler
 
     public ItemData woodData;
     public ItemData uraniumData;
+    public ItemData appleData;
 
     public HotBarModel hotBarModel;
     public GameObject taskUI;
-    public TaskPanel taskPanel;
 
     public bool isTask1done = false;
     public bool isTask2done = false;
     public bool isTask3done = false;
+
+    public bool isWoodCollected = false;
+    public bool isAppleCollected = false;
+    public bool isUraniumCollected = false;
 
     public float throwForce = 10f;
     public float maxThrowForce = 30f;
@@ -117,10 +121,25 @@ public class Player : MonoBehaviour, IPointerClickHandler
                     Debug.Log(carriedObject.name);
 
                     if (carriedObject.name == "Wood(Clone)")
+                    {
                         inventoryController.inventoryModel.Insert(woodData, 1);
+                        isWoodCollected = true;
+                        Debug.Log("isWoodCollected:" + isWoodCollected); 
+                    }
                     else if (carriedObject.name == "uranium(Clone)")
+                    {
                         inventoryController.inventoryModel.Insert(uraniumData, 1);
-                    
+                        isUraniumCollected = true;
+                        Debug.Log("isUraniumColleted:" + isUraniumCollected);
+                    }
+                    else if (carriedObject.name == "apple(Clone)")
+                    {
+                        inventoryController.inventoryModel.Insert(appleData, 1);
+                        isAppleCollected = true;
+                        Debug.Log("isAppleColleted:" + isAppleCollected);
+                    }
+
+
                     Destroy(carriedObject);
                 }
             }    
