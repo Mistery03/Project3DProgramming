@@ -56,6 +56,11 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public Player getPlayerScript()
+    {
+        return playerScript;
+    }
+
     public void RegisterBunny(GameObject animal)
     {
         animalFollow animFollow = animal.GetComponent<animalFollow>();

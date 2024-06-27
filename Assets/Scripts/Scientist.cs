@@ -12,6 +12,7 @@ public class Scientist : MonoBehaviour, IPointerClickHandler
     public GameObject Task3Convo;
     public Dialogue dialougue1;
     public Player player;
+    public GameManager manager;
 
     
     public void OnPointerClick(PointerEventData eventData)
@@ -26,7 +27,7 @@ public class Scientist : MonoBehaviour, IPointerClickHandler
     // Start is called before the first frame update
     void Start()
     {
-        
+        player = manager.getPlayerScript();
     }
 
     // Update is called once per frame
