@@ -5,7 +5,6 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-
 public class InventoryModel : MonoBehaviour
 {
 
@@ -16,22 +15,14 @@ public class InventoryModel : MonoBehaviour
     public int maxInventorySlots = 16;
     public List<SlotData> playerInventory = new List<SlotData>();
 
-    public HotBarModel hotBarModel;
-
-    public Transform playerPos;
-
     const int MAXSTACKSIZE = 10;
 
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log(playerInventory.Count);
         for (int i = 0; i < maxInventorySize; i++) 
         {
-           InventorySlot slotToBeAdded = Instantiate(slot);
-
-            slotToBeAdded.inventoryModel = this;
-            slotToBeAdded.hotBarModel = hotBarModel;
+            InventorySlot slotToBeAdded = Instantiate(slot);
 
            slotToBeAdded.transform.SetParent(this.transform,false);
            slotList.Add(slotToBeAdded);
