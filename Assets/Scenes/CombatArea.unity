@@ -613,7 +613,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerPrefab: {fileID: 78529438512931355, guid: eefe0d0637e00db4ba5df4d2084dd8f4, type: 3}
   newMusicClip: {fileID: 8300000, guid: 334d0d5b6cce8054fa3f0c49bc350c81, type: 3}
-  oriMusicClip: {fileID: 8300000, guid: f271f464ee8852340a458a19e8908d6a, type: 3}
+  oriMusicClip: {fileID: 8300000, guid: a5458dc7d3396374baffbe1cdb33a0e1, type: 3}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -1794,7 +1794,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8341555366938360189, guid: 674cd0246e646034381464ff138ba5a7, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
