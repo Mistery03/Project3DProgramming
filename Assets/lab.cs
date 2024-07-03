@@ -9,6 +9,7 @@ public class lab : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Debug.Log("test");
         gameManager = FindObjectOfType<GameManager>();
         if (gameManager == null)
         {
