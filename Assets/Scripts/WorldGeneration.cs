@@ -10,12 +10,8 @@ public class TerrainGenerator : MonoBehaviour
     public GameObject woodPrefab;
     public GameObject applePrefab;
     public GameObject uraniumPrefab;
-
-    public GameObject explosive;
-    public GameObject hole;
-
+    
     public GameObject waterPrefab;
-    public GameObject teleporterPrefab; // Add teleporter prefab
 
     public int width = 100;
     public int height = 100;
@@ -28,12 +24,10 @@ public class TerrainGenerator : MonoBehaviour
     public float woodChance = 0.001f;
     public float appleChance = 0.001f;
     public float uraniumChance = 0.01f;
-    public float explosiveChance = 0.01f;
 
     public float waterLevel = 0.5f; // The height level for water
     public int waterAreaSize = 20; // Size of the water area
     public int specialCubeAreaSize = 20; // Size of the special cube area
-    public int teleporterAreaSize = 1; // Size of the teleporter area
 
     public int bunnyCount = 0;
 
@@ -46,7 +40,7 @@ public class TerrainGenerator : MonoBehaviour
 
     void GenerateTerrain()
     {
-        // Generate random starting positions for the water, special cube, and teleporter areas
+        // Generate random starting positions for the 20x20 water and special cube areas
         int waterStartX = Random.Range(0, width - waterAreaSize);
         int waterStartZ = Random.Range(0, height - waterAreaSize);
 
@@ -60,22 +54,11 @@ public class TerrainGenerator : MonoBehaviour
         }
         while (IsOverlapping(waterStartX, waterStartZ, waterAreaSize, specialCubeStartX, specialCubeStartZ, specialCubeAreaSize));
 
-        int teleporterStartX;
-        int teleporterStartZ;
-
-        do
-        {
-            teleporterStartX = Random.Range(0, width - teleporterAreaSize);
-            teleporterStartZ = Random.Range(0, height - teleporterAreaSize);
-        }
-        while (IsOverlapping(waterStartX, waterStartZ, waterAreaSize, teleporterStartX, teleporterStartZ, teleporterAreaSize) ||
-               IsOverlapping(specialCubeStartX, specialCubeStartZ, specialCubeAreaSize, teleporterStartX, teleporterStartZ, teleporterAreaSize));
-
         for (int x = 0; x < width; x++)
         {
             for (int z = 0; z < height; z++)
             {
-                // Check if the current position is within the water area
+                // Check if the current position is within the 20x20 water area
                 if (x >= waterStartX && x < waterStartX + waterAreaSize && z >= waterStartZ && z < waterStartZ + waterAreaSize)
                 {
                     SpawnWater(x, z);
@@ -113,27 +96,12 @@ public class TerrainGenerator : MonoBehaviour
                     continue; // Skip object spawning for the special cube area
                 }
 
-                // Check if the current position is within the teleporter area
-                if (x >= teleporterStartX && x < teleporterStartX + teleporterAreaSize && z >= teleporterStartZ && z < teleporterStartZ + teleporterAreaSize)
-                {
-                    if (x == teleporterStartX + teleporterAreaSize / 2 && z == teleporterStartZ + teleporterAreaSize / 2)
-                    {
-                        Vector3 teleporterPos = new Vector3(x, cubeHeight / 2, z);
-                        GameObject teleporterObject = Instantiate(teleporterPrefab, teleporterPos, Quaternion.identity);
-                        teleporterObject.transform.localScale = new Vector3(5, 1, 5);
-                        teleporterObject.transform.parent = this.transform;
-                    }
-
-                    continue; // Skip object spawning for the teleporter area
-                }
-
                 // Spawn objects with chances
                 spawnObject(treePrefab, treeChance, x, z, cubeHeight, -4f, 6.5f, -16f);
                 spawnObject(bushesPrefab, bushChance, x, z, cubeHeight, -1.1f, -2.2f, 0);
                 spawnObject(woodPrefab, woodChance, x, z, cubeHeight, -2f, 0f, 0f);
                 spawnObject(applePrefab, appleChance, x, z, cubeHeight, -2, 6.5f, 0);
                 spawnObject(uraniumPrefab, uraniumChance, x, z, cubeHeight, -2, 6.5f, 0);
-                spawnObject(explosive, explosiveChance, x, z, cubeHeight, -2, 6.5f, 0);
             }
         }
 
@@ -152,7 +120,7 @@ public class TerrainGenerator : MonoBehaviour
 
     bool IsOverlapping(int startX1, int startZ1, int size1, int startX2, int startZ2, int size2)
     {
-        return startX1 < startX2 + size2 + 10 &&
+        return startX1 < startX2 + size2 + 10  &&
                startX1 + size1 + 10 > startX2 &&
                startZ1 < startZ2 + size2 + 10 &&
                startZ1 + size1 + 10 > startZ2;

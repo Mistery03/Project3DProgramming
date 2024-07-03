@@ -185,6 +185,18 @@ public class InventoryModel : MonoBehaviour
         UpdateSlots();
     }
 
+    public bool PlayerHasItem(ItemData itemData)
+    {
+        foreach (var slot in playerInventory)
+        {
+            if (slot != null && slot.item == itemData)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
     // Update is called once per frame
     void Update()
     {

@@ -6,7 +6,7 @@ using static UnityEditor.Progress;
 
 public class InventoryController : MonoBehaviour
 {
-    [SerializeField] GameObject inventoryObject, hotbarObject,chemicalListObject;
+    [SerializeField] GameObject inventoryObject, hotbarObject;
     public InventoryModel inventoryModel;
     public List<SlotData> playerInventory = new List<SlotData>();
     public int maxInventorySlots = 16;
@@ -16,6 +16,8 @@ public class InventoryController : MonoBehaviour
     public HotBarModel hotBarModel;
 
     public ChemicalList chemicalList;
+
+    public GameObject chemicalListObject;
 
     private void Start()
     {
@@ -31,7 +33,7 @@ public class InventoryController : MonoBehaviour
     {
         inventoryModel.playerInventory = playerInventory;
 
-     
+        
 
         toggleInventory();
        
