@@ -103,7 +103,7 @@ public class Player : MonoBehaviour, IPointerClickHandler
             CarryObject();
         }
 
-        if (Input.GetMouseButtonDown(1))
+        /*if (Input.GetMouseButtonDown(1))
         {
             RaycastHit hit;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -137,7 +137,7 @@ public class Player : MonoBehaviour, IPointerClickHandler
                 }
 
             }
-        }
+        }*/
     }
 
 
@@ -148,7 +148,7 @@ public class Player : MonoBehaviour, IPointerClickHandler
         if (Physics.Raycast(ray, out hit))
         {
             // Check if the object hit by the raycast is carryable
-            if (hit.collider.CompareTag("Carryable"))
+            if (hit.collider.CompareTag("Carryable") || hit.collider.CompareTag("explosion"))
             {
                 carriedObject = hit.collider.gameObject;
                 isCarrying = true;

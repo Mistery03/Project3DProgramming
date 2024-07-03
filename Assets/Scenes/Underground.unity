@@ -953,7 +953,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: test
+  m_Text: 
 --- !u!222 &1570664976
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1230,9 +1230,9 @@ MonoBehaviour:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 963194228}
-  - {fileID: 705507995}
-  - {fileID: 1773073291}
   - {fileID: 1137003439}
-  - {fileID: 684769520}
+  - {fileID: 705507995}
   - {fileID: 1519620665}
+  - {fileID: 684769520}
+  - {fileID: 963194228}
+  - {fileID: 1773073291}
