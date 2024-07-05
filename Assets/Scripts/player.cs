@@ -4,7 +4,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class Player : MonoBehaviour, IPointerClickHandler
+public class Player : MonoBehaviour
 {
     public float moveSpeed = 20f;
     public float maxHP = 100;
@@ -256,21 +256,5 @@ public class Player : MonoBehaviour, IPointerClickHandler
         UIManager.Instance.UpdateHP(currentHP, maxHP); // Update HP text
     }
 
-    //TO Lynn, I put the hotbarmodel with it functions that is useful to you so you can avoid the sphagetti code 
-    //WARNING: there a bug where you need to press 1-4 to make sure there no null
-    //removeItem(ItemData item, int amount)
-    //hotBarModel.RemoveItem(hotBarModel.getCurrentItem(), hotBarModel.getCurrentItemAmount())
-    //hotBarModel.getCurrentItem() -> return itemData
-    //hotBarModel.getCurrentItemAmount() -> return item amount in integer
-    //Also Lynn you might need to check the clicking function if you wanna press outside of player (can only click on player with the function below)
-    public void OnPointerClick(PointerEventData eventData)
-    {
-        if(eventData.button == PointerEventData.InputButton.Left)
-        {
-            //Remove upon receiving
-            Debug.Log(hotBarModel.getCurrentItem());
-            Debug.Log(hotBarModel.getCurrentItemAmount());
-        }
-        
-    }
+    
 }
