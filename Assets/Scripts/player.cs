@@ -70,6 +70,7 @@ public class Player : MonoBehaviour, IPointerClickHandler
 
     private void Update()
     {
+        currentHP = Mathf.Clamp(currentHP,0,100);
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
 
