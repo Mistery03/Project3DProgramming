@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 251ef897c829d694a9a75d426b3e44af, type: 3}
   m_Name: Uranium
   m_EditorClassIdentifier: 
+  ID: 2
   <Name>k__BackingField: Uranium
   <Description>k__BackingField: RADIOACTIVE
   <ItemImage>k__BackingField: {fileID: -167941892, guid: bebfcc06403c25844b303250b80abb9a, type: 3}

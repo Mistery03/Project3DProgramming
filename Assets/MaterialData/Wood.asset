@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 251ef897c829d694a9a75d426b3e44af, type: 3}
   m_Name: Wood
   m_EditorClassIdentifier: 
+  ID: 1
   <Name>k__BackingField: Wood
   <Description>k__BackingField: hard wood
   <ItemImage>k__BackingField: {fileID: -930167507, guid: bebfcc06403c25844b303250b80abb9a, type: 3}

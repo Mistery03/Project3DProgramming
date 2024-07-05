@@ -8,8 +8,8 @@ namespace Inventory.Model
     [CreateAssetMenu]
     public class ItemData : ScriptableObject
     {
-       
-        public int ID => GetInstanceID();
+
+        public int ID = -1;
 
         [field: SerializeField]
         public string Name { get; set; }

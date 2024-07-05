@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 251ef897c829d694a9a75d426b3e44af, type: 3}
   m_Name: Apple
   m_EditorClassIdentifier: 
+  ID: 0
   <Name>k__BackingField: Apple
   <Description>k__BackingField: An apple a day keeps the doctor away
   <ItemImage>k__BackingField: {fileID: -2046108269, guid: bebfcc06403c25844b303250b80abb9a, type: 3}

@@ -1,14 +1,29 @@
 using Inventory.Model;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using static UnityEditor.Progress;
 
 public class InventoryController : MonoBehaviour
 {
+
     public int maxStackItem = 10;
     public InventorySlot[] slotList;
-    public GameObject ItemInventoryPrefab;
+    public GameObject ItemInventoryPrefab, inventoryParent, inventoryBtn;
+    public int[] itemIDList, itemAmountList, itemExistList;
+
+    public ItemData dummyData;
+
+    [System.Serializable]
+    public struct itemLookUp
+    {
+        public int itemID;
+        public ItemData item;
+    }
+
+    public itemLookUp[] itemLookUpList;
+    
 
     int selectedSlot = -1;
 
@@ -26,6 +41,20 @@ public class InventoryController : MonoBehaviour
             { 
                 changeSelectedSlot(number - 1);
             }
+        }
+
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+
+            inventoryParent.SetActive(!inventoryParent.activeSelf);
+            inventoryBtn.SetActive(!inventoryBtn.activeSelf);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape) && inventoryParent.activeSelf == true) 
+        { 
+ 
+            inventoryParent.SetActive(!inventoryParent.activeSelf);
+            inventoryBtn.SetActive(!inventoryBtn.activeSelf);
         }
     }
     public void changeSelectedSlot(int slotIndex)
@@ -67,10 +96,11 @@ public class InventoryController : MonoBehaviour
         return false;
     }
 
-    public void SpawnItem(ItemData item, InventorySlot slot)
+    public void SpawnItem(ItemData item, InventorySlot slot, int amount = 1)
     {
         GameObject newItem = Instantiate(ItemInventoryPrefab, slot.transform);
         Item inventoryItem = newItem.GetComponent<Item>();
+        inventoryItem.SetAmount(amount);
         inventoryItem.initiliaseItem(item);
     }
 
@@ -97,5 +127,117 @@ public class InventoryController : MonoBehaviour
         return null;
     }
 
-   
+    public int[] getAllItemID() 
+    {
+       
+        for(int i = 0;i<slotList.Length;i++)
+        {
+            InventorySlot slot = slotList[i];
+            Item itemInSlot = slot.GetComponentInChildren<Item>();
+            if(itemInSlot != null)
+            {
+                itemIDList[i] = itemInSlot.item.ID;
+
+                
+            }else
+            {
+                itemIDList[i] = -1;
+
+            }
+        }
+
+        return itemIDList;
+    }
+
+    public int[] getAllItemAmount()
+    {
+
+        for (int i = 0; i < slotList.Length; i++)
+        {
+            InventorySlot slot = slotList[i];
+            Item itemInSlot = slot.GetComponentInChildren<Item>();
+            if (itemInSlot != null)
+            {
+     
+                itemAmountList[i] = itemInSlot.amount;
+            
+
+            }
+            else
+            {
+         
+                itemAmountList[i] = 0;
+    
+            }
+        }
+
+        return itemAmountList;
+    }
+
+    public int[] getAllItemExistence()
+    {
+
+        for (int i = 0; i < slotList.Length; i++)
+        {
+            InventorySlot slot = slotList[i];
+            Item itemInSlot = slot.GetComponentInChildren<Item>();
+            if (itemInSlot != null)
+            {
+
+                itemExistList[i] = 1;
+
+            }
+            else
+            {
+      
+                itemExistList[i] = 0;
+            }
+        }
+
+        return itemExistList;
+    }
+
+    public void addItemViaItemID()
+    {
+
+        for (int i = 0; i < itemExistList.Length; i++)
+        {
+            if (itemExistList[i] == 1)
+            {
+                InventorySlot slot = slotList[i];
+                Item itemInSlot = slot.GetComponentInChildren<Item>();
+                if (itemInSlot == null)
+                {
+                    int itemID = itemIDList[i];
+                    int amount = itemAmountList[i];
+                    ItemData itemData = GetItemDataByID(itemID);
+                    if (itemData != null)
+                    {
+                        SpawnItem(itemData, slot,amount);
+                       
+                    }
+                    else
+                    {
+                        Debug.LogWarning("ItemData not found for itemID: " + itemID);
+                    }
+                }
+
+            }
+
+        }
+    }
+
+    ItemData GetItemDataByID(int itemID)
+    {
+        foreach (var lookup in itemLookUpList)
+        {
+            if (lookup.itemID == itemID)
+            {
+                return lookup.item;
+            }
+        }
+        return null; // Or handle the case where the itemID is not found
+    }
+
+
 }

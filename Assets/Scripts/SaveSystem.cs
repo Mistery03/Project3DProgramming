@@ -38,4 +38,41 @@ public static class SaveSystem
             return null;
         }
     }
+
+    public static void saveInventory(InventoryController ic)
+    {
+        BinaryFormatter formatter = new BinaryFormatter();
+        string path = Application.persistentDataPath + "/inventory.sff";
+        Debug.Log(path);
+        FileStream stream = new FileStream(path, FileMode.Create);
+
+        InventoryData data = new InventoryData(ic);
+
+        formatter.Serialize(stream, data);
+
+        stream.Close();
+    }
+
+    public static InventoryData loadInventory()
+    {
+        string path = Application.persistentDataPath + "/inventory.sff";
+        if (File.Exists(path))
+        {
+            BinaryFormatter formatter = new BinaryFormatter();
+            FileStream stream = new FileStream(path, FileMode.Open);
+
+            InventoryData data = formatter.Deserialize(stream) as InventoryData;
+
+            stream.Close();
+
+            return data;
+        }
+        else
+        {
+            Debug.LogError("Save file not found in" + path);
+            return null;
+        }
+    }
+
+    
 }

@@ -34,6 +34,12 @@ public class Item : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
 
     }
 
+    public void SetAmount(int amount)
+    {
+        this.amount = amount;
+        // Update UI or other necessary components
+    }
+
     public void refreshCount()
     {
         countText.text = amount.ToString();
