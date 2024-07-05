@@ -25,8 +25,12 @@ public class lab : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
+            Player player = collision.GetComponent("Player") as Player;
+            SaveSystem.savePlayer(player);
             GameManager.Instance.AudioDestroy();
-            gameManager.ChangeScene("LabArea"); 
+            gameManager.ChangeScene("LabArea");
+
+           
         }
     }
 

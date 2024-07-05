@@ -45,6 +45,13 @@ public class GameManager : MonoBehaviour
             playerScript = playerInstance.GetComponent<Player>(); // Get the Player script component
             cameraFollow = Camera.main.GetComponent<TopDownCamera>();
 
+            PlayerData data = SaveSystem.loadPlayer();
+            if (data != null) 
+            {
+                playerScript.currentHP = data.health;
+            }
+           
+
             if (cameraFollow != null)
             {
                 cameraFollow.playerTransform = playerInstance.transform;

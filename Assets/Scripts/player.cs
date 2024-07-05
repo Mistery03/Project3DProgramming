@@ -8,7 +8,7 @@ public class Player : MonoBehaviour, IPointerClickHandler
 {
     public float moveSpeed = 20f;
     public float maxHP = 100;
-    private float currentHP;
+    public float currentHP;
 
     public InventoryController inventoryController;
 
@@ -45,7 +45,7 @@ public class Player : MonoBehaviour, IPointerClickHandler
     {
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
-        currentHP = maxHP;
+        //currentHP = maxHP;
 
         UIManager.Instance.setHpText(hpText);
         UIManager.Instance.UpdateHP(currentHP, maxHP); // Initialize HP text
