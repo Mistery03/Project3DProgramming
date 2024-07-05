@@ -16,3 +16,5 @@ MonoBehaviour:
   <Description>k__BackingField: RADIOACTIVE
   <ItemImage>k__BackingField: {fileID: -167941892, guid: bebfcc06403c25844b303250b80abb9a, type: 3}
   <instance>k__BackingField: {fileID: 2088669640223336340, guid: 1a12b3b9f5ac4224697a1bce2fc424f1, type: 3}
+  <ItemType>k__BackingField: 1
+  stackable: 1

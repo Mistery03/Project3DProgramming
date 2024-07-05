@@ -24,8 +24,23 @@ namespace Inventory.Model
         [field: SerializeField]
         public GameObject instance {  get; set; }
 
+        [field: SerializeField]
+        public ItemType ItemType { get; set; }
+
+        [field: SerializeField]
+        public bool stackable = true;
+
     }
 
-    
+    public enum ItemType
+    {
+        Food,
+        Radiation,
+        EarthElement,
+    }
+
+
+
+
 }
 

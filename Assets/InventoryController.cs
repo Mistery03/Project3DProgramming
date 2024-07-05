@@ -6,59 +6,95 @@ using static UnityEditor.Progress;
 
 public class InventoryController : MonoBehaviour
 {
-    [SerializeField] GameObject inventoryObject, hotbarObject,chemicalListObject;
-    public InventoryModel inventoryModel;
-    public List<SlotData> playerInventory = new List<SlotData>();
-    public int maxInventorySlots = 16;
+    public int maxStackItem = 10;
+    public InventorySlot[] slotList;
+    public GameObject ItemInventoryPrefab;
 
-    public ItemData testApple;
-
-    public HotBarModel hotBarModel;
-
-    public ChemicalList chemicalList;
+    int selectedSlot = -1;
 
     private void Start()
     {
-        inventoryModel.playerInventory = playerInventory;
-        inventoryModel.maxInventorySlots = maxInventorySlots;
-
-   
-    
+        changeSelectedSlot(0);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        inventoryModel.playerInventory = playerInventory;
+        if(Input.inputString != null)
+        {
+            bool isNumber = int.TryParse(Input.inputString, out int number); 
+            if(isNumber && number > 0 && number < 10) 
+            { 
+                changeSelectedSlot(number - 1);
+            }
+        }
+    }
+    public void changeSelectedSlot(int slotIndex)
+    {   
+        if(selectedSlot >= 0)
+            slotList[selectedSlot].deselectSlot();
 
-     
+        slotList[slotIndex].selectSlot();
+        selectedSlot = slotIndex;
+    }
+    public bool AddItem(ItemData item)
+    {
+        for (int i = 0; i < slotList.Length; i++)
+        {
+            InventorySlot slot = slotList[i];
+            Item itemInSlot = slot.GetComponentInChildren<Item>();
+            if (itemInSlot != null &&
+                itemInSlot.item == item &&
+                itemInSlot.amount < maxStackItem &&
+                itemInSlot.item.stackable == true)
+            {
+                itemInSlot.amount++;
+                itemInSlot.refreshCount();
+                return true;
+            }
+        }
 
-        toggleInventory();
-       
-        
+        for (int i = 0; i < slotList.Length; i++) 
+        { 
+            InventorySlot slot = slotList[i];
+            Item itemInSlot = slot.GetComponentInChildren<Item>();
+            if(itemInSlot == null)
+            {
+                SpawnItem(item, slot);
+                return true;
+            }
+        }
+
+        return false;
     }
 
-    void toggleInventory()
+    public void SpawnItem(ItemData item, InventorySlot slot)
     {
+        GameObject newItem = Instantiate(ItemInventoryPrefab, slot.transform);
+        Item inventoryItem = newItem.GetComponent<Item>();
+        inventoryItem.initiliaseItem(item);
+    }
 
-        if (Input.GetKeyDown(KeyCode.I))
+    public ItemData getSelectedItem(bool useItem)
+    {
+        InventorySlot slot = slotList[selectedSlot];
+        Item itemInSlot = slot.GetComponentInChildren<Item>();
+        if (itemInSlot != null)
         {
-            inventoryObject.SetActive(!inventoryObject.activeSelf);
-     
+            ItemData item = itemInSlot.item;
+            if (useItem == true)
+            {
+                itemInSlot.amount--;
+                if(itemInSlot.amount <= 0)
+                {
+                    Destroy(itemInSlot.gameObject);
+                }else
+                {
+                    itemInSlot.refreshCount();
+                }
+            }
+            return item;
         }
-
-        if (Input.GetKeyDown(KeyCode.C))
-        {
-            chemicalListObject.SetActive(!chemicalListObject.activeSelf);
-
-        }
-
-
-        if (Input.GetKeyDown(KeyCode.L))
-            inventoryModel.Insert(testApple, 1);
-        
-        if(Input.GetKeyDown(KeyCode.K))
-            inventoryModel.Remove(testApple,1);
+        return null;
     }
 
    
