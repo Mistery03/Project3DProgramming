@@ -12,6 +12,7 @@ public class door : MonoBehaviour
         
             Player player = other.GetComponent("Player") as Player;
             SaveSystem.savePlayer(player);
+            SaveSystem.saveInventory(player.inventoryController);
         }
         SceneManager.LoadScene(1);
     }

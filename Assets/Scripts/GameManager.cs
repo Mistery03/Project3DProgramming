@@ -50,6 +50,8 @@ public class GameManager : MonoBehaviour
             {
                 playerScript.currentHP = data.health;
             }
+
+            loadInventory();
            
 
             if (cameraFollow != null)
@@ -112,5 +114,20 @@ public class GameManager : MonoBehaviour
             audioSource.clip = newClip;
             audioSource.Play();
         }
+    }
+
+    public void loadInventory()
+    {
+        InventoryData data = SaveSystem.loadInventory();
+
+        playerScript.inventoryController.itemIDList = data.itemIDList;
+        playerScript.inventoryController.itemAmountList = data.itemAmountList;
+        playerScript.inventoryController.itemExistList = data.itemSlotExist;
+
+        playerScript.inventoryController.addItemViaItemID();
+
+      
+
+
     }
 }

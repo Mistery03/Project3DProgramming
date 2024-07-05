@@ -27,6 +27,8 @@ public class lab : MonoBehaviour
         {
             Player player = collision.GetComponent("Player") as Player;
             SaveSystem.savePlayer(player);
+            SaveSystem.saveInventory(player.inventoryController);
+
             GameManager.Instance.AudioDestroy();
             gameManager.ChangeScene("LabArea");
 
