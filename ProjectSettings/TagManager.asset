@@ -11,6 +11,7 @@ TagManager:
   - Droppable
   - item
   - explosion
+  - HUD
   layers:
   - Default
   - TransparentFX

@@ -10,8 +10,10 @@ public class InventoryController : MonoBehaviour
 
     public int maxStackItem = 10;
     public InventorySlot[] slotList;
-    public GameObject ItemInventoryPrefab, inventoryParent, inventoryBtn;
+    public GameObject ItemInventoryPrefab, inventoryParent, inventoryBtn, debugMenu;
     public int[] itemIDList, itemAmountList, itemExistList;
+
+
 
     public ItemData dummyData;
 
@@ -55,6 +57,11 @@ public class InventoryController : MonoBehaviour
  
             inventoryParent.SetActive(!inventoryParent.activeSelf);
             inventoryBtn.SetActive(!inventoryBtn.activeSelf);
+        }
+
+        if(Input.GetKeyDown(KeyCode.F1))
+        {
+            debugMenu.SetActive(!debugMenu.activeSelf);
         }
     }
     public void changeSelectedSlot(int slotIndex)
