@@ -74,5 +74,38 @@ public static class SaveSystem
         }
     }
 
-    
+    public static void saveTask(Player player)
+    {
+        BinaryFormatter formatter = new BinaryFormatter();
+        string path = Application.persistentDataPath + "/task.sff";
+        Debug.Log(path);
+        FileStream stream = new FileStream(path, FileMode.Create);
+
+        TaskData data = new TaskData(player);
+
+        formatter.Serialize(stream, data);
+
+        stream.Close();
+    }
+
+    public static TaskData loadTask()
+    {
+        string path = Application.persistentDataPath + "/task.sff";
+        if (File.Exists(path))
+        {
+            BinaryFormatter formatter = new BinaryFormatter();
+            FileStream stream = new FileStream(path, FileMode.Open);
+
+            TaskData data = formatter.Deserialize(stream) as TaskData;
+
+            stream.Close();
+
+            return data;
+        }
+        else
+        {
+            Debug.LogError("Save file not found in" + path);
+            return null;
+        }
+    }
 }

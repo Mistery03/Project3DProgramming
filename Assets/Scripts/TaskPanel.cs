@@ -10,25 +10,38 @@ public class TaskPanel : MonoBehaviour
     public GameObject task1;
     public GameObject task2;
     public GameObject task3;
+    public GameObject task4;
+    public GameObject taskComplete;
+    public GameObject mark;
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(player.isTask1done == true)
+        if (player.isTask1done == true)
         {
-            task1.SetActive(!task1.activeSelf);
+            task1.SetActive(true);
         }
-        else if(player.isTask2done == true)
+        else if (player.isTask2done == true)
         {
-            task2.SetActive(!task2.activeSelf);
-        }else if(player.isTask3done == true)
+            task2.SetActive(true);
+        }
+        else if (player.isTask3done == true)
         {
-            task3.SetActive(!task3.activeSelf);
+            task3.SetActive(true);
+        }
+        else if (player.isTask4done == true)
+        {
+            task4.SetActive(true);
+        }
+        else if (player.isTask1done == true && player.isTask2done == true && player.isTask3done == true && player.isTask4done)
+        {
+            taskComplete.SetActive(true);
+            mark.SetActive(true);
         }
     }
 }
