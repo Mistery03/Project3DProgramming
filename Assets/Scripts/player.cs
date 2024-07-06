@@ -93,7 +93,7 @@ public class Player : MonoBehaviour
         {
             // Calculate the direction the player should face
             Quaternion targetRotation = Quaternion.LookRotation(moveDirection);
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 10f); 
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 10f);
         }
 
         // Cancel pick up animation if the player starts moving
@@ -126,7 +126,22 @@ public class Player : MonoBehaviour
         {
             CarryObject();
         }
+
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            if (taskUI != null)
+            {
+                taskUI.SetActive(!taskUI.activeSelf);
+                if (taskUI.activeSelf)
+                {
+                    Debug.Log("Taskui activated");
+
+                }
+
+            }
+        }
     }
+
 
     private void TryPickUpObject()
     {
