@@ -24,6 +24,7 @@ public class Player : MonoBehaviour
 
     public ItemData woodData;
     public ItemData uraniumData;
+    public ItemData appleData;
 
     public HotBarModel hotBarModel;
     public GameObject taskUI;
@@ -32,6 +33,11 @@ public class Player : MonoBehaviour
     public bool isTask1done = false;
     public bool isTask2done = false;
     public bool isTask3done = false;
+    public bool isTask4done = false;
+
+    public bool isWoodCollected = false;
+    public bool isUraniumCollected = false;
+    public bool isAppleCollected = false;
 
     public float throwForce = 10f;
     public float maxThrowForce = 30f;
@@ -46,6 +52,8 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
+        
+        
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
         currentHP = maxHP;
@@ -70,6 +78,14 @@ public class Player : MonoBehaviour
             aimLineRenderer.positionCount = 2; // Set to 2 points (start and end)
             aimLineRenderer.enabled = false; // Disable initially
         }
+        //TaskData taskdata = SaveSystem.loadTask();
+        //if (taskdata != null)
+        //{
+        //    isTask1done = taskdata.taskIsDoneList[0] != 0;
+        //    isTask2done = taskdata.taskIsDoneList[1] != 0;
+        //    isTask3done = taskdata.taskIsDoneList[2] != 0;
+        //    isTask4done = taskdata.taskIsDoneList[3] != 0;
+        ///}
     }
 
     private void Update()
@@ -160,6 +176,25 @@ public class Player : MonoBehaviour
                 // Trigger the pick-up animation
                 animator.SetTrigger("PickUp");
                 animator.SetBool("IsPickingUp", true);
+
+                
+                if(carriedObject == woodData)
+                {
+                    isWoodCollected = true;
+                    Debug.Log("Wood Collected");
+                }
+
+                if (carriedObject == uraniumData)
+                {
+                    isUraniumCollected = true;
+                    Debug.Log("Uranium Collected");
+                }
+
+                if (carriedObject == appleData)
+                {
+                    isAppleCollected = true;
+                    Debug.Log("Apple Collected");
+                }
             }
         }
     }
@@ -245,6 +280,7 @@ public class Player : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+
         if (collision.collider.CompareTag("Enemy"))
         {
             GameManager.Instance.PlayerTakeDamage(10);
@@ -252,6 +288,32 @@ public class Player : MonoBehaviour
         else if (collision.collider.CompareTag("DeathPoint"))
         {
             TakeDamage(100); // Apply 100 damage if colliding with DeathPoint
+
+        }else if(collision.collider.CompareTag("Carryable"))
+        {
+            objectBase objectInstante = collision.gameObject.GetComponent<objectBase>();
+            inventoryController.AddItem(objectInstante.itemdata);
+            
+            switch(objectInstante.itemID)
+            {
+                case 0:
+                    isAppleCollected = true;
+                    Debug.Log("Apple Collected");
+                    break;
+                case 1:
+                    isWoodCollected = true;
+                    Debug.Log("Wood Collected");
+                    break;
+                case 2:
+                    isUraniumCollected = true;
+                    Debug.Log("Uranium Collected");
+                    break;
+            }
+            Destroy(collision.gameObject);
+        }else if(collision.collider.CompareTag("HoleEntrance"))
+        {
+            isTask4done = true;
+            SaveSystem.saveTask(this);
         }
     }
 

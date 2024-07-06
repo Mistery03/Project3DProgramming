@@ -321,6 +321,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 290696748412495302, guid: b331915b3c9a1af47a21b0863b6ed2b6, type: 3}
+      propertyPath: textSpeed
+      value: 0.001
+      objectReference: {fileID: 0}
     - target: {fileID: 5394158224605856575, guid: b331915b3c9a1af47a21b0863b6ed2b6, type: 3}
       propertyPath: m_Name
       value: Canvas
@@ -1387,7 +1391,7 @@ MonoBehaviour:
   textComponent: {fileID: 1438534185}
   lines:
   - Thanks
-  textSpeed: 0.2
+  textSpeed: 0.001
 --- !u!114 &939769197
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3079,7 +3083,7 @@ MonoBehaviour:
   textComponent: {fileID: 0}
   lines:
   - Explanation
-  textSpeed: 0.2
+  textSpeed: 0.001
 --- !u!114 &1600091343
 MonoBehaviour:
   m_ObjectHideFlags: 0

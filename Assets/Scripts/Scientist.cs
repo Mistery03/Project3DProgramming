@@ -52,17 +52,23 @@ public class Scientist : MonoBehaviour, IPointerClickHandler
         {
             ToggleTask1DialogueUI();
             player.isTask1done = true;
+            SaveSystem.saveTask(player);
             Debug.Log("task1: "+ player.isTask1done);
         }else if(player.isTask2done == false)
         {
             ToggleTask2DialogueUI();
             //check if the item collect
-            player.isTask2done = true;
-            Debug.Log("task2: " + player.isTask2done);
+            if (player.isAppleCollected == true && player.isWoodCollected == true && player.isUraniumCollected == true)
+            {
+                player.isTask2done = true;
+                SaveSystem.saveTask(player);
+                Debug.Log("task2: " + player.isTask2done);
+            }
         }else if(player.isTask3done == false)
         {
             ToggleTask3DialogueUI();
             player.isTask3done = true;
+            SaveSystem.saveTask(player);
             Debug.Log("task3: " + player.isTask3done);
         }
 

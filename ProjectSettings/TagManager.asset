@@ -12,6 +12,7 @@ TagManager:
   - item
   - explosion
   - HUD
+  - HoleEntrance
   layers:
   - Default
   - TransparentFX

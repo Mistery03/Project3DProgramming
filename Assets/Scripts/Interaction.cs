@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Interaction : MonoBehaviour
 {
-    public GameObject scientist; 
-    public GameObject conversationUI; 
+    public GameObject scientist;
+    public GameObject conversationUI;
     public float interactionDistance = 3f; // Set the distance to interact
     public KeyCode interactionKey = KeyCode.E; // Key to interact
 
@@ -19,8 +19,8 @@ public class Interaction : MonoBehaviour
         if (Vector3.Distance(transform.position, scientist.transform.position) <= interactionDistance)
         {
             isNearScientist = true;
-            
-            
+
+
             // Show interaction hint (Optional)
             Debug.Log("Press 'E' to interact with the scientist");
         }
