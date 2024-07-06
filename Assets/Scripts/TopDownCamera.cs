@@ -10,7 +10,7 @@ public class TopDownCamera : MonoBehaviour
         if (playerTransform != null)
         {
             // Calculate the desired position of the camera
-            Vector3 desiredPosition = playerTransform.position + playerTransform.TransformDirection(offset);
+            Vector3 desiredPosition = playerTransform.position + offset;
 
             // Set the position of the camera
             transform.position = desiredPosition;
@@ -20,7 +20,10 @@ public class TopDownCamera : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("No target assigned to the camera. Please assign a target.");
+
+            Debug.LogWarning("No target assigned to the camera. Finding player target.");
+            Player player = FindFirstObjectByType<Player>();
+            playerTransform = player.transform;
         }
     }
 }

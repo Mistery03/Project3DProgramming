@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class Player : MonoBehaviour
 {
@@ -10,9 +11,11 @@ public class Player : MonoBehaviour
     public float maxHP = 100;
     public float currentHP;
 
+    private Animator animator;
+
     public InventoryController inventoryController;
 
-    private GameObject carriedObject; 
+    private GameObject carriedObject;
     private bool isCarrying = false;
     private Vector3 carryOffset = new Vector3(-1f, 1f, -1f);
 
@@ -45,11 +48,13 @@ public class Player : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
-        //currentHP = maxHP;
+        currentHP = maxHP;
+
+        animator = GetComponent<Animator>();
 
         UIManager.Instance.setHpText(hpText);
         UIManager.Instance.UpdateHP(currentHP, maxHP); // Initialize HP text
-        
+
         gameManager = FindObjectOfType<GameManager>();
         if (gameManager == null)
         {
@@ -65,19 +70,37 @@ public class Player : MonoBehaviour
             aimLineRenderer.positionCount = 2; // Set to 2 points (start and end)
             aimLineRenderer.enabled = false; // Disable initially
         }
-
     }
 
     private void Update()
     {
-        currentHP = Mathf.Clamp(currentHP,0,100);
+        currentHP = Mathf.Clamp(currentHP, 0, 100);
+
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
 
-        Vector3 movement = new Vector3(horizontalInput, 0f, verticalInput) * moveSpeed;
+        // Correct movement input
+        Vector3 moveDirection = new Vector3(horizontalInput, 0, verticalInput).normalized;
 
         // Update Rigidbody velocity instead of transforming position directly
-        rb.velocity = new Vector3(movement.x, rb.velocity.y, movement.z);
+        rb.velocity = new Vector3(moveDirection.x * moveSpeed, rb.velocity.y, moveDirection.z * moveSpeed);
+
+        // Update animator parameters
+        bool isMoving = moveDirection.magnitude > 0;
+        animator.SetBool("IsRunning", isMoving);
+
+        if (isMoving)
+        {
+            // Calculate the direction the player should face
+            Quaternion targetRotation = Quaternion.LookRotation(moveDirection);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 10f); 
+        }
+
+        // Cancel pick up animation if the player starts moving
+        if (isMoving && animator.GetBool("IsPickingUp"))
+        {
+            animator.SetBool("IsPickingUp", false);
+        }
 
         if (Input.GetMouseButtonDown(0))
         {
@@ -103,44 +126,7 @@ public class Player : MonoBehaviour
         {
             CarryObject();
         }
-
-        /*if (Input.GetMouseButtonDown(1))
-        {
-            RaycastHit hit;
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out hit))
-            {
-                // Check if the object hit by the raycast is carryable
-                if (hit.collider.CompareTag("Carryable"))
-                {
-                    carriedObject = hit.collider.gameObject;
-
-                    Debug.Log(carriedObject.name);
-
-                    if (carriedObject.name == "Wood(Clone)")
-                        inventoryController.inventoryModel.Insert(woodData, 1);
-                    else if (carriedObject.name == "uranium(Clone)")
-                        inventoryController.inventoryModel.Insert(uraniumData, 1);
-                    
-                    Destroy(carriedObject);
-                }
-            }    
-        }else if (Input.GetKeyDown(KeyCode.B))
-        {
-         
-            if (taskUI != null)
-            {
-                taskUI.SetActive(!taskUI.activeSelf);
-                if (taskUI.activeSelf)
-                {
-                    Debug.Log("Taskui activated");
-                    
-                }
-
-            }
-        }*/
     }
-
 
     private void TryPickUpObject()
     {
@@ -155,6 +141,10 @@ public class Player : MonoBehaviour
                 isCarrying = true;
 
                 carriedObject.GetComponent<Rigidbody>().isKinematic = true; // Disable physics while carrying
+
+                // Trigger the pick-up animation
+                animator.SetTrigger("PickUp");
+                animator.SetBool("IsPickingUp", true);
             }
         }
     }
@@ -208,6 +198,10 @@ public class Player : MonoBehaviour
     {
         if (isAiming && isCarrying && carriedObject != null)
         {
+            // Set animator parameters for throwing
+            animator.SetBool("IsThrowing", true);
+            animator.SetTrigger("Throwing");
+
             carriedObject.GetComponent<Rigidbody>().isKinematic = false; // Re-enable physics
 
             Vector3 mousePosition = Input.mousePosition;
@@ -222,9 +216,17 @@ public class Player : MonoBehaviour
             isCarrying = false;
             isAiming = false;
             aimLineRenderer.enabled = false; // Disable the line renderer
+
+            // Reset throwing state after a short delay
+            StartCoroutine(ResetThrowingState());
         }
     }
 
+    private IEnumerator ResetThrowingState()
+    {
+        yield return new WaitForSeconds(0.5f); // Adjust delay to match your throwing animation length
+        animator.SetBool("IsThrowing", false);
+    }
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -256,5 +258,5 @@ public class Player : MonoBehaviour
         UIManager.Instance.UpdateHP(currentHP, maxHP); // Update HP text
     }
 
-    
+
 }

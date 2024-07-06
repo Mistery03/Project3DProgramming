@@ -13,8 +13,6 @@ public class InventoryController : MonoBehaviour
     public GameObject ItemInventoryPrefab, inventoryParent, inventoryBtn, debugMenu;
     public int[] itemIDList, itemAmountList, itemExistList;
 
-
-
     public ItemData dummyData;
 
     [System.Serializable]
