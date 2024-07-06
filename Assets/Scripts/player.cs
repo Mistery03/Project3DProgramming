@@ -25,7 +25,6 @@ public class Player : MonoBehaviour
     public ItemData woodData;
     public ItemData uraniumData;
 
-    public HotBarModel hotBarModel;
     public GameObject taskUI;
     public TaskPanel taskPanel;
 
