@@ -11,7 +11,6 @@ public class TerrainGenerator : MonoBehaviour
     public GameObject applePrefab;
     public GameObject uraniumPrefab;
 
-    public GameObject explosive;
     public GameObject hole;
 
     public GameObject waterPrefab;
@@ -28,7 +27,6 @@ public class TerrainGenerator : MonoBehaviour
     public float woodChance = 0.001f;
     public float appleChance = 0.001f;
     public float uraniumChance = 0.01f;
-    public float explosiveChance = 0.01f;
 
     public float waterLevel = 0.5f; // The height level for water
     public int waterAreaSize = 20; // Size of the water area
@@ -133,7 +131,7 @@ public class TerrainGenerator : MonoBehaviour
                 spawnObject(woodPrefab, woodChance, x, z, cubeHeight, -2f, 0f, 0f);
                 spawnObject(applePrefab, appleChance, x, z, cubeHeight, -2, 6.5f, 0);
                 spawnObject(uraniumPrefab, uraniumChance, x, z, cubeHeight, -2, 6.5f, 0);
-                spawnObject(explosive, explosiveChance, x, z, cubeHeight, -2, 6.5f, 0);
+
             }
         }
 
