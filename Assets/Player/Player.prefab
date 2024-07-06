@@ -293,7 +293,6 @@ MonoBehaviour:
   inventoryController: {fileID: 6822750111505281473}
   woodData: {fileID: 11400000, guid: b5b8df58d03d4004e9680116188637b6, type: 2}
   uraniumData: {fileID: 11400000, guid: e2185ff481e9b034ab867c21a2358a78, type: 2}
-  hotBarModel: {fileID: 0}
   taskUI: {fileID: 3313314435683802394}
   taskPanel: {fileID: 4640564556200027883}
   isTask1done: 0
