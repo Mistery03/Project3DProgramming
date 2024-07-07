@@ -1968,7 +1968,7 @@ MonoBehaviour:
   scale: 10
   maxCubeHeight: 2
   minCubeHeight: 0.5
-  rockChance: 0.01
+  rockChance: 0.005
   uraniumChance: 0.001
   waterLevel: 0.5
   waterAreaSize: 20

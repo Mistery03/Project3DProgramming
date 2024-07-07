@@ -1,10 +1,12 @@
 using Inventory.Model;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class InventoryDebugger : MonoBehaviour
 {
+    public Player player;
     public InventoryController inventoryManager;
     public ItemData[] itemsToPickup;
     
@@ -28,6 +30,7 @@ public class InventoryDebugger : MonoBehaviour
         if(receivedItem != null) 
         {
             Debug.Log($"Currently holding: {receivedItem}");
+           
         }else
         {
             Debug.Log($"Currently holding: nothing");
@@ -40,6 +43,7 @@ public class InventoryDebugger : MonoBehaviour
         if (receivedItem != null)
         {
             Debug.Log($"Using: {receivedItem}");
+
         }
         else
         {

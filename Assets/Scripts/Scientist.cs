@@ -99,6 +99,7 @@ public class Scientist : MonoBehaviour, IPointerClickHandler
                     if (player.isTask3done && player.isTask2done && player.isTask1done && player.isTask3done)
                     {
                         ToggleTask4DialogueUI();
+                        
                     }
                 }
             }

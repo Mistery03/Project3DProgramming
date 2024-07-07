@@ -25,6 +25,8 @@ public class hole : MonoBehaviour
             Player player = collision.GetComponent("Player") as Player;
             SaveSystem.savePlayer(player);
             SaveSystem.saveInventory(player.inventoryController);
+            player.isTask4done = true;
+            SaveSystem.saveTask(player);
             gameManager.ChangeScene("Underground"); 
         }
     }

@@ -25,6 +25,7 @@ public class holeOne : MonoBehaviour
             Player player = collision.GetComponent("Player") as Player;
             SaveSystem.savePlayer(player);
             SaveSystem.saveInventory(player.inventoryController);
+            SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene().buildIndex);
             gameManager.ChangeScene("CombatArea"); 
         }
     }

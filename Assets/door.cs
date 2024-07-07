@@ -7,13 +7,19 @@ public class door : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
+
+
         if (other.GetComponent("Player") is Player)
         {
         
             Player player = other.GetComponent("Player") as Player;
             SaveSystem.savePlayer(player);
             SaveSystem.saveInventory(player.inventoryController);
+            if (!player.gameCompleted) 
+                SceneManager.LoadScene(2);
+            else
+            { }
         }
-        SceneManager.LoadScene(2);
+       
     }
 }

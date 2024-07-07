@@ -24,17 +24,14 @@ public class ChemicalAnalyser : MonoBehaviour, IPointerClickHandler, IPointerEnt
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && chemUI.activeSelf == true)
+        if (Input.GetKeyDown(KeyCode.E) && chemUI.activeSelf == true)
         {
 
            chemUI.SetActive(!chemUI.activeSelf);
 
         }
 
-        if(Input.GetKeyDown(KeyCode.E))
-        {
-            resultManager.AddItem(dummyData);
-        }
+ 
 
        
     }
@@ -65,12 +62,13 @@ public class ChemicalAnalyser : MonoBehaviour, IPointerClickHandler, IPointerEnt
         Item itemInSlot = materialSlot.GetComponentInChildren<Item>();
         if (itemInSlot != null)
         {
+            itemInSlot.amount--;
             ChemicalData[] chemicalList = itemInSlot.item.ChemicalData;
             for (int i = 0; i < chemicalList.Length; i++)
             {
                if(resultManager.AddItem(chemicalList[i]))
                 {
-                    itemInSlot.amount--;
+                   
                     if (itemInSlot.amount <= 0)
                     {
                         Destroy(itemInSlot.gameObject);

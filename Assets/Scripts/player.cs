@@ -15,8 +15,8 @@ public class Player : MonoBehaviour
 
     public InventoryController inventoryController;
 
-    private GameObject carriedObject;
-    private bool isCarrying = false;
+    public GameObject carriedObject;
+    public bool isCarrying = false;
     private Vector3 carryOffset = new Vector3(-1f, 1f, -1f);
 
     private Rigidbody rb;
@@ -33,6 +33,7 @@ public class Player : MonoBehaviour
     public bool isTask2done = false;
     public bool isTask3done = false;
     public bool isTask4done = false;
+    public bool gameCompleted = false;
 
     public float throwForce = 10f;
     public float maxThrowForce = 30f;

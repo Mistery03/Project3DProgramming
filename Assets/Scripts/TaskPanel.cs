@@ -32,6 +32,7 @@ public class TaskPanel : MonoBehaviour
         {
             taskComplete.SetActive(true);
             mark.SetActive(true);
+            player.gameCompleted = true;
         }
     }
 
