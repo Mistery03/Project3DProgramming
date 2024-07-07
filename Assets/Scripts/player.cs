@@ -53,11 +53,12 @@ public class Player : MonoBehaviour
 
     public InventorySlot throwSlot;
 
+    public GameObject debugChemicalMenu;
+
     Item itemInSlot;
 
     private void Start()
     {
-        
         
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
@@ -181,10 +182,16 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.C)) 
         { 
             chemicalList.gameObject.SetActive(!chemicalList.gameObject.activeSelf);
+       
         }
         if (Input.GetKeyDown(KeyCode.Escape) && chemicalList.gameObject.activeSelf)
         {
             chemicalList.gameObject.SetActive(!chemicalList.gameObject.activeSelf);
+         
+        }
+        if (Input.GetKeyDown(KeyCode.F2))
+        {
+            debugChemicalMenu.SetActive(!debugChemicalMenu.activeSelf);
         }
     }
 

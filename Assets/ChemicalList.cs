@@ -13,10 +13,10 @@ public class ChemicalList : MonoBehaviour
 
     int defaultValue = 0;
 
-    int carbonAmt =0, oxygenAmt=0, uraniumAmt=0,hydrogenAmt=0;
+    public int carbonAmt =0, oxygenAmt=0, uraniumAmt=0,hydrogenAmt=0;
     void Start()
     {
-   
+
         refreshCount();
 
     }
@@ -60,5 +60,21 @@ public class ChemicalList : MonoBehaviour
         oxygenAmountText.text = oxygenAmt.ToString();
         uraniumAmountText.text = uraniumAmt.ToString();
         hydrogenAmountText.text = hydrogenAmt.ToString();
+
+    }
+
+    public void saveData()
+    {
+        SaveSystem.saveChemical(this);
+    }
+
+    public void loadData()
+    {
+        ChemicalSaveData data = SaveSystem.loadChemical();
+        hydrogenAmt = data.chemicalAmountList[0];
+        oxygenAmt = data.chemicalAmountList[1];
+        carbonAmt = data.chemicalAmountList[2];
+        uraniumAmt = data.chemicalAmountList[3];
+        refreshCount();
     }
 }

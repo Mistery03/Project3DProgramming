@@ -108,4 +108,39 @@ public static class SaveSystem
             return null;
         }
     }
+
+    public static void saveChemical(ChemicalList cl)
+    {
+        BinaryFormatter formatter = new BinaryFormatter();
+        string path = Application.persistentDataPath + "/chemical.sff";
+        Debug.Log(path);
+        FileStream stream = new FileStream(path, FileMode.Create);
+
+        ChemicalSaveData data = new ChemicalSaveData(cl);
+
+        formatter.Serialize(stream, data);
+
+        stream.Close();
+    }
+
+    public static ChemicalSaveData loadChemical()
+    {
+        string path = Application.persistentDataPath + "/chemical.sff";
+        if (File.Exists(path))
+        {
+            BinaryFormatter formatter = new BinaryFormatter();
+            FileStream stream = new FileStream(path, FileMode.Open);
+
+            ChemicalSaveData data = formatter.Deserialize(stream) as ChemicalSaveData;
+
+            stream.Close();
+
+            return data;
+        }
+        else
+        {
+            Debug.LogError("Save file not found in" + path);
+            return null;
+        }
+    }
 }
