@@ -71,8 +71,8 @@ public class UIManager : MonoBehaviour
     public void Restart()
     {
         Time.timeScale = 1f;
-        GameManager.Instance.AudioDestroy();
-        SceneManager.LoadScene("LabArea");
+        //GameManager.Instance.AudioDestroy();
+        SceneManager.LoadScene(1);
     }
 
     public void PauseGame()
