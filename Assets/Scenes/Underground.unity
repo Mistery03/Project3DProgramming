@@ -952,7 +952,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 
+  m_Text: test
 --- !u!222 &1570664976
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1214,11 +1214,13 @@ MonoBehaviour:
   uraniumPrefab: {fileID: 2088669640223336340, guid: 1a12b3b9f5ac4224697a1bce2fc424f1, type: 3}
   teleporter: {fileID: 4353886258112504776, guid: 547bcf519f60dab4aa886113d3a9ad70, type: 3}
   waterPrefab: {fileID: 2370052644932367753, guid: 49ac3565f335e214ebd40608fa51f273, type: 3}
+  rockPrefab: {fileID: 8322176656504990857, guid: d9c1b4c9a169d554a8abeeadfe592ead, type: 3}
   width: 100
   height: 100
   scale: 10
   maxCubeHeight: 2
   minCubeHeight: 0.5
+  rockChance: 0.01
   uraniumChance: 0.001
   waterLevel: 0.5
   waterAreaSize: 20
@@ -1229,9 +1231,9 @@ MonoBehaviour:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 1137003439}
-  - {fileID: 705507995}
-  - {fileID: 1519620665}
-  - {fileID: 684769520}
   - {fileID: 963194228}
+  - {fileID: 705507995}
   - {fileID: 1773073291}
+  - {fileID: 1137003439}
+  - {fileID: 684769520}
+  - {fileID: 1519620665}

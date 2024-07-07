@@ -25,7 +25,7 @@ public class Scientist : MonoBehaviour, IPointerClickHandler
     {
         if (eventData.button == PointerEventData.InputButton.Left)
         {
-            Debug.Log("Been click");
+            
             checkTask1();
         }
     }

@@ -148,7 +148,6 @@ GameObject:
   - component: {fileID: 5572364212075051746}
   - component: {fileID: 1483738550751228599}
   - component: {fileID: 3222871976405753251}
-  - component: {fileID: 2037410061445080800}
   m_Layer: 0
   m_Name: Plane
   m_TagString: DeathPoint
@@ -243,18 +242,3 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &2037410061445080800
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5440888583086405156}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91a8f834288059c489ec3817c114de28, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  explosionPrefab: {fileID: 3312846873817155235, guid: df2b0ade358d1ee4b9212d4e59a0eac7, type: 3}
-  explosionCooldown: 2
-  explosionOffset: {x: 20, y: 0, z: 0}
