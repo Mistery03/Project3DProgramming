@@ -7,7 +7,6 @@ public class UIManager : MonoBehaviour
     public static UIManager Instance;
 
     public GameObject deathPanel;
-    public GameObject pausePanel; // Reference to the PausePanel
     public Text hpText;
 
     private void Awake()
@@ -26,27 +25,7 @@ public class UIManager : MonoBehaviour
     {
         if (deathPanel != null)
         {
-            deathPanel.SetActive(false);
-        }
-
-        if (pausePanel != null)
-        {
-            pausePanel.SetActive(false); 
-        }
-    }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            if (Time.timeScale == 1f)
-            {
-                PauseGame();
-            }
-            else
-            {
-                ResumeGame();
-            }
+            deathPanel.SetActive(false); // Ensure the death panel is hidden at the start
         }
     }
 
@@ -70,31 +49,6 @@ public class UIManager : MonoBehaviour
 
     public void Restart()
     {
-        Time.timeScale = 1f;
-        GameManager.Instance.AudioDestroy();
         SceneManager.LoadScene("LabArea");
-    }
-
-    public void PauseGame()
-    {
-        if (pausePanel != null)
-        {
-            pausePanel.SetActive(true);
-        }
-        Time.timeScale = 0f; 
-    }
-
-    public void ResumeGame()
-    {
-        if (pausePanel != null)
-        {
-            pausePanel.SetActive(false);
-        }
-        Time.timeScale = 1f; 
-    }
-
-    public void QuitGame()
-    {
-        SceneManager.LoadScene("MainMenu"); // Load the main menu or quit the game
     }
 }
