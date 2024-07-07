@@ -26,7 +26,7 @@ public class TerrainGenerator : MonoBehaviour
     public float bushChance = 0.001f;
     public float woodChance = 0.001f;
     public float appleChance = 0.001f;
-    public float uraniumChance = 0.01f;
+    public float uraniumChance = 0.001f;
 
     public float waterLevel = 0.5f; // The height level for water
     public int waterAreaSize = 20; // Size of the water area

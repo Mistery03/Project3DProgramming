@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class hole : MonoBehaviour
+public class surfaceHole : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
@@ -13,8 +13,8 @@ public class hole : MonoBehaviour
             Player player = other.GetComponent("Player") as Player;
             SaveSystem.savePlayer(player);
             SaveSystem.saveInventory(player.inventoryController);
-            SceneManager.LoadScene(3);
+            SceneManager.LoadScene(2);
         }
-       
+        
     }
 }

@@ -38,7 +38,6 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1518,7 +1517,6 @@ MonoBehaviour:
   woodPrefab: {fileID: 5482318753007451882, guid: 5004eeb791f6ee049a952ef5ced8078d, type: 3}
   applePrefab: {fileID: 3242045612695948039, guid: 8e50a7d5508d7c942bd4445cb81dc2a3, type: 3}
   uraniumPrefab: {fileID: 2088669640223336340, guid: 1a12b3b9f5ac4224697a1bce2fc424f1, type: 3}
-  explosive: {fileID: 4136603368764819715, guid: 40c28b331713cbf4d9b3003e21ed8de8, type: 3}
   hole: {fileID: 3723616553493267330, guid: 25b57105c4ac7134192c05907e7a2294, type: 3}
   waterPrefab: {fileID: 2370052644932367753, guid: 49ac3565f335e214ebd40608fa51f273, type: 3}
   teleporterPrefab: {fileID: 3723616553493267330, guid: 25b57105c4ac7134192c05907e7a2294, type: 3}
@@ -1531,8 +1529,7 @@ MonoBehaviour:
   bushChance: 0.003
   woodChance: 0.001
   appleChance: 0.001
-  uraniumChance: 0.001
-  explosiveChance: 0.01
+  uraniumChance: 0.00001
   waterLevel: 0.5
   waterAreaSize: 10
   specialCubeAreaSize: 20

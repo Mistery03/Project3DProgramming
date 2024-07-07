@@ -13,6 +13,7 @@ public class Item : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
     public Image image;
     public Transform parentAfterDrag;
     public Transform CanvasTransform;
+    public Canvas canvas;
 
     [Header("Item Amount")]
     public int amount = 1;
@@ -21,8 +22,9 @@ public class Item : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
     {
         if(CanvasTransform == null)
         {
-            Canvas canvas = FindFirstObjectByType<Canvas>();
+            canvas = FindFirstObjectByType<Canvas>();
             CanvasTransform = canvas.transform;
+       
         }
         initiliaseItem(item);
     }
@@ -51,6 +53,7 @@ public class Item : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
         countText.raycastTarget = false;
         image.raycastTarget = false;
         parentAfterDrag = transform.parent;
+        canvas.sortingOrder = 2;
         transform.SetParent(CanvasTransform);
         transform.SetAsLastSibling();
         
@@ -65,6 +68,7 @@ public class Item : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
     {
         countText.raycastTarget = true;
         image.raycastTarget = true;
+        canvas.sortingOrder = 0;
         transform.SetParent(parentAfterDrag);
             
     }

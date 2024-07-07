@@ -14,7 +14,7 @@ public class GroundGenerator : MonoBehaviour
     public float maxCubeHeight = 2f;
     public float minCubeHeight = 0.5f;
 
-    public float uraniumChance = 0.0001f;
+    public float uraniumChance = 0.1f;
 
     public float waterLevel = 0.5f; // The height level for water
     public int waterAreaSize = 20; // Size of the water area
