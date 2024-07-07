@@ -3,7 +3,6 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using System.Collections;
 
 public class Player : MonoBehaviour, IPointerClickHandler
 {
@@ -11,11 +10,9 @@ public class Player : MonoBehaviour, IPointerClickHandler
     public float maxHP = 100;
     private float currentHP;
 
-    private Animator animator;
-
     public InventoryController inventoryController;
 
-    private GameObject carriedObject;
+    private GameObject carriedObject; 
     private bool isCarrying = false;
     private Vector3 carryOffset = new Vector3(-1f, 1f, -1f);
 
@@ -57,11 +54,9 @@ public class Player : MonoBehaviour, IPointerClickHandler
         rb.freezeRotation = true;
         currentHP = maxHP;
 
-        animator = GetComponent<Animator>();
-
         UIManager.Instance.setHpText(hpText);
         UIManager.Instance.UpdateHP(currentHP, maxHP); // Initialize HP text
-
+        
         gameManager = FindObjectOfType<GameManager>();
         if (gameManager == null)
         {
@@ -77,6 +72,7 @@ public class Player : MonoBehaviour, IPointerClickHandler
             aimLineRenderer.positionCount = 2; // Set to 2 points (start and end)
             aimLineRenderer.enabled = false; // Disable initially
         }
+
     }
 
     private void Update()
@@ -84,28 +80,10 @@ public class Player : MonoBehaviour, IPointerClickHandler
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
 
-        // Correct movement input
-        Vector3 moveDirection = new Vector3(horizontalInput, 0, verticalInput).normalized;
+        Vector3 movement = new Vector3(horizontalInput, 0f, verticalInput) * moveSpeed;
 
         // Update Rigidbody velocity instead of transforming position directly
-        rb.velocity = new Vector3(moveDirection.x * moveSpeed, rb.velocity.y, moveDirection.z * moveSpeed);
-
-        // Update animator parameters
-        bool isMoving = moveDirection.magnitude > 0;
-        animator.SetBool("IsRunning", isMoving);
-
-        if (isMoving)
-        {
-            // Calculate the direction the player should face
-            Quaternion targetRotation = Quaternion.LookRotation(moveDirection);
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 10f); 
-        }
-
-        // Cancel pick up animation if the player starts moving
-        if (isMoving && animator.GetBool("IsPickingUp"))
-        {
-            animator.SetBool("IsPickingUp", false);
-        }
+        rb.velocity = new Vector3(movement.x, rb.velocity.y, movement.z);
 
         if (Input.GetMouseButtonDown(0))
         {
@@ -131,7 +109,6 @@ public class Player : MonoBehaviour, IPointerClickHandler
         {
             CarryObject();
         }
-<<<<<<< Updated upstream
 
         if (Input.GetMouseButtonDown(1))
         {
@@ -183,9 +160,8 @@ public class Player : MonoBehaviour, IPointerClickHandler
 
             }
         }
-=======
->>>>>>> Stashed changes
     }
+
 
     private void TryPickUpObject()
     {
@@ -200,10 +176,6 @@ public class Player : MonoBehaviour, IPointerClickHandler
                 isCarrying = true;
 
                 carriedObject.GetComponent<Rigidbody>().isKinematic = true; // Disable physics while carrying
-
-                // Trigger the pick-up animation
-                animator.SetTrigger("PickUp");
-                animator.SetBool("IsPickingUp", true);
             }
         }
     }
@@ -257,10 +229,6 @@ public class Player : MonoBehaviour, IPointerClickHandler
     {
         if (isAiming && isCarrying && carriedObject != null)
         {
-            // Set animator parameters for throwing
-            animator.SetBool("IsThrowing", true);
-            animator.SetTrigger("Throwing");
-
             carriedObject.GetComponent<Rigidbody>().isKinematic = false; // Re-enable physics
 
             Vector3 mousePosition = Input.mousePosition;
@@ -275,17 +243,9 @@ public class Player : MonoBehaviour, IPointerClickHandler
             isCarrying = false;
             isAiming = false;
             aimLineRenderer.enabled = false; // Disable the line renderer
-
-            // Reset throwing state after a short delay
-            StartCoroutine(ResetThrowingState());
         }
     }
 
-    private IEnumerator ResetThrowingState()
-    {
-        yield return new WaitForSeconds(0.5f); // Adjust delay to match your throwing animation length
-        animator.SetBool("IsThrowing", false);
-    }
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -317,13 +277,21 @@ public class Player : MonoBehaviour, IPointerClickHandler
         UIManager.Instance.UpdateHP(currentHP, maxHP); // Update HP text
     }
 
+    //TO Lynn, I put the hotbarmodel with it functions that is useful to you so you can avoid the sphagetti code 
+    //WARNING: there a bug where you need to press 1-4 to make sure there no null
+    //removeItem(ItemData item, int amount)
+    //hotBarModel.RemoveItem(hotBarModel.getCurrentItem(), hotBarModel.getCurrentItemAmount())
+    //hotBarModel.getCurrentItem() -> return itemData
+    //hotBarModel.getCurrentItemAmount() -> return item amount in integer
+    //Also Lynn you might need to check the clicking function if you wanna press outside of player (can only click on player with the function below)
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (eventData.button == PointerEventData.InputButton.Left)
+        if(eventData.button == PointerEventData.InputButton.Left)
         {
-            // Remove upon receiving
+            //Remove upon receiving
             Debug.Log(hotBarModel.getCurrentItem());
             Debug.Log(hotBarModel.getCurrentItemAmount());
         }
+        
     }
 }
