@@ -71,10 +71,19 @@ public class ChemicalList : MonoBehaviour
     public void loadData()
     {
         ChemicalSaveData data = SaveSystem.loadChemical();
-        hydrogenAmt = data.chemicalAmountList[0];
-        oxygenAmt = data.chemicalAmountList[1];
-        carbonAmt = data.chemicalAmountList[2];
-        uraniumAmt = data.chemicalAmountList[3];
+        hydrogenAmt = data.hydrogenAmount;
+        oxygenAmt = data.oxygenAmount;
+        carbonAmt = data.carbonAmount;
+        uraniumAmt = data.uraniumAmount;
         refreshCount();
+    }
+
+    public void restartData()
+    {
+        hydrogenAmt = 0;
+        oxygenAmt = 0;
+        carbonAmt = 0;
+        uraniumAmt = 0;
+        SaveSystem.saveChemical(this);
     }
 }

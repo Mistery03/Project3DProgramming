@@ -22,26 +22,25 @@ public class TaskPanel : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (player.isTask1done == true)
-        {
-            task1.SetActive(true);
-        }
-        else if (player.isTask2done == true)
-        {
-            task2.SetActive(true);
-        }
-        else if (player.isTask3done == true)
-        {
-            task3.SetActive(true);
-        }
-        else if (player.isTask4done == true)
-        {
-            task4.SetActive(true);
-        }
-        else if (player.isTask1done == true && player.isTask2done == true && player.isTask3done == true && player.isTask4done)
+
+        task1.SetActive(player.isTask1done);
+        task2.SetActive(player.isTask2done);
+        task3.SetActive(player.isTask3done);
+        task4.SetActive(player.isTask4done);
+        
+        if (player.isTask1done == true && player.isTask2done == true && player.isTask3done == true && player.isTask4done)
         {
             taskComplete.SetActive(true);
             mark.SetActive(true);
         }
+    }
+
+    public void refreshCompletedLines()
+    {
+        task1.SetActive(!player.isTask1done);
+        task2.SetActive(!player.isTask1done);
+        task3.SetActive(!player.isTask1done);
+        task4.SetActive(!player.isTask1done);
+
     }
 }

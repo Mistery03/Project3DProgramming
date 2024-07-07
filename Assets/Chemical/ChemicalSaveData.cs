@@ -6,14 +6,17 @@ using UnityEngine;
 public class ChemicalSaveData 
 {
 
-    public int[] chemicalAmountList;
+    public int hydrogenAmount; 
+    public int oxygenAmount;
+    public int carbonAmount; 
+    public int uraniumAmount;
 
     public ChemicalSaveData(ChemicalList cl)
     {
-        chemicalAmountList[0] = cl.hydrogenAmt;
-        chemicalAmountList[1] = cl.oxygenAmt;
-        chemicalAmountList[2] = cl.carbonAmt;
-        chemicalAmountList[3] = cl.uraniumAmt;
+        hydrogenAmount = cl.hydrogenAmt;
+        oxygenAmount = cl.oxygenAmt;
+        carbonAmount = cl.carbonAmt;
+        uraniumAmount = cl.uraniumAmt;
 
     }
 

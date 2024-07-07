@@ -10,8 +10,9 @@ public class InventoryController : MonoBehaviour
 
     public int maxStackItem = 10;
     public InventorySlot[] slotList;
-    public GameObject ItemInventoryPrefab, inventoryParent, inventoryBtn, debugMenu;
+    public GameObject ItemInventoryPrefab, inventoryParent, inventoryBtn, debugMenu, debugChemicalMenu, debugTaskMenu, taskUI;
     public int[] itemIDList, itemAmountList, itemExistList;
+    public ChemicalList chemicalList;
 
     public ItemData dummyData;
 
@@ -61,6 +62,39 @@ public class InventoryController : MonoBehaviour
         {
             debugMenu.SetActive(!debugMenu.activeSelf);
         }
+        if (Input.GetKeyDown(KeyCode.F2))
+        {
+            debugChemicalMenu.SetActive(!debugChemicalMenu.activeSelf);
+        }
+        if (Input.GetKeyDown(KeyCode.F3))
+        {
+            debugTaskMenu.SetActive(!debugTaskMenu.activeSelf);
+        }
+
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            if (taskUI != null)
+            {
+                taskUI.SetActive(!taskUI.activeSelf);
+
+
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.Escape) && taskUI.activeSelf)
+        {
+            taskUI.SetActive(!taskUI.activeSelf);
+        }
+
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            chemicalList.gameObject.SetActive(!chemicalList.gameObject.activeSelf);
+
+        }
+        if (Input.GetKeyDown(KeyCode.Escape) && chemicalList.gameObject.activeSelf)
+        {
+            chemicalList.gameObject.SetActive(!chemicalList.gameObject.activeSelf);
+
+        }
     }
     public void changeSelectedSlot(int slotIndex)
     {   
@@ -69,6 +103,21 @@ public class InventoryController : MonoBehaviour
 
         slotList[slotIndex].selectSlot();
         selectedSlot = slotIndex;
+    }
+
+    public bool searchItem(ItemData item)
+    {
+        for (int i = 0; i < slotList.Length; i++)
+        {
+            InventorySlot slot = slotList[i];
+            Item itemInSlot = slot.GetComponentInChildren<Item>();
+            if (itemInSlot != null &&
+                itemInSlot.item == item)
+            {
+                return true;
+            }
+        }
+        return false;
     }
     public bool AddItem(ItemData item)
     {
@@ -178,6 +227,7 @@ public class InventoryController : MonoBehaviour
 
         return itemAmountList;
     }
+
 
     public int[] getAllItemExistence()
     {

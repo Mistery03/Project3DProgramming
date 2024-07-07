@@ -5,15 +5,18 @@ using UnityEngine;
 [System.Serializable]
 public class TaskData
 {
-    public bool[] taskIsDoneList;
+    public bool taskIsDone1;
+    public bool taskIsDone2;
+    public bool taskIsDone3;
+    public bool taskIsDone4;
     
 
     public TaskData(Player player)
     {
-        taskIsDoneList[0] = player.isTask1done;
-        taskIsDoneList[1] = player.isTask2done;
-        taskIsDoneList[2] = player.isTask3done;
-        taskIsDoneList[3] = player.isTask4done;
-
+        taskIsDone1 = player.isTask1done;
+        taskIsDone2 = player.isTask2done;
+        taskIsDone3 = player.isTask3done;
+        taskIsDone4 = player.isTask4done;
+       
     }
 }

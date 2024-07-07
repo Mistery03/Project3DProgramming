@@ -34,10 +34,6 @@ public class Player : MonoBehaviour
     public bool isTask3done = false;
     public bool isTask4done = false;
 
-    public bool isWoodCollected = false;
-    public bool isUraniumCollected = false;
-    public bool isAppleCollected = false;
-
     public float throwForce = 10f;
     public float maxThrowForce = 30f;
     public float aimRadius = 5f;
@@ -84,14 +80,14 @@ public class Player : MonoBehaviour
             aimLineRenderer.positionCount = 2; // Set to 2 points (start and end)
             aimLineRenderer.enabled = false; // Disable initially
         }
-        //TaskData taskdata = SaveSystem.loadTask();
-        //if (taskdata != null)
-        //{
-        //    isTask1done = taskdata.taskIsDoneList[0] != 0;
-        //    isTask2done = taskdata.taskIsDoneList[1] != 0;
-        //    isTask3done = taskdata.taskIsDoneList[2] != 0;
-        //    isTask4done = taskdata.taskIsDoneList[3] != 0;
-        ///}
+        TaskData taskdata = SaveSystem.loadTask();
+        if (taskdata != null)
+        {
+            isTask1done = taskdata.taskIsDone1;
+            isTask2done = taskdata.taskIsDone2;
+            isTask3done = taskdata.taskIsDone3;
+            isTask4done = taskdata.taskIsDone4;
+        }
     }
 
     private void Update()
@@ -165,34 +161,33 @@ public class Player : MonoBehaviour
             CarryObject();
         }
 
-        if (Input.GetKeyDown(KeyCode.B))
-        {
-            if (taskUI != null)
-            {
-                taskUI.SetActive(!taskUI.activeSelf);
-               
-
-            }
-        }
-        if (Input.GetKeyDown(KeyCode.Escape) && taskUI.activeSelf)
-        {
-            taskUI.SetActive(!taskUI.activeSelf);
-        }
-
-        if (Input.GetKeyDown(KeyCode.C)) 
-        { 
-            chemicalList.gameObject.SetActive(!chemicalList.gameObject.activeSelf);
        
-        }
-        if (Input.GetKeyDown(KeyCode.Escape) && chemicalList.gameObject.activeSelf)
-        {
-            chemicalList.gameObject.SetActive(!chemicalList.gameObject.activeSelf);
-         
-        }
-        if (Input.GetKeyDown(KeyCode.F2))
-        {
-            debugChemicalMenu.SetActive(!debugChemicalMenu.activeSelf);
-        }
+      
+    }
+
+    public void saveTaskCompleted()
+    {
+        SaveSystem.saveTask(this);
+    }
+
+    public void loadTaskCompleted()
+    {
+        TaskData data = SaveSystem.loadTask();
+        isTask1done = data.taskIsDone1;
+        isTask2done = data.taskIsDone2;
+        isTask3done = data.taskIsDone3;
+        isTask4done = data.taskIsDone4;
+    }
+
+    public void restartData()
+    {
+        isTask1done = false;
+        isTask2done = false;
+        isTask3done = false;
+        isTask4done = false;
+
+        SaveSystem.saveTask(this);
+   
     }
 
 
@@ -215,23 +210,7 @@ public class Player : MonoBehaviour
                 animator.SetBool("IsPickingUp", true);
 
                 
-                if(carriedObject == woodData)
-                {
-                    isWoodCollected = true;
-                    Debug.Log("Wood Collected");
-                }
-
-                if (carriedObject == uraniumData)
-                {
-                    isUraniumCollected = true;
-                    Debug.Log("Uranium Collected");
-                }
-
-                if (carriedObject == appleData)
-                {
-                    isAppleCollected = true;
-                    Debug.Log("Apple Collected");
-                }
+                
             }
         }
     }
@@ -336,21 +315,7 @@ public class Player : MonoBehaviour
             objectBase objectInstante = collision.gameObject.GetComponent<objectBase>();
             inventoryController.AddItem(objectInstante.itemdata);
             
-            switch(objectInstante.itemID)
-            {
-                case 0:
-                    isAppleCollected = true;
-                    Debug.Log("Apple Collected");
-                    break;
-                case 1:
-                    isWoodCollected = true;
-                    Debug.Log("Wood Collected");
-                    break;
-                case 2:
-                    isUraniumCollected = true;
-                    Debug.Log("Uranium Collected");
-                    break;
-            }
+          
             Destroy(collision.gameObject);
         }else if(collision.collider.CompareTag("HoleEntrance"))
         {
