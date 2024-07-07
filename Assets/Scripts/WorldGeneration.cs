@@ -9,8 +9,14 @@ public class TerrainGenerator : MonoBehaviour
     public GameObject bunnyPrefab;
     public GameObject woodPrefab;
     public GameObject applePrefab;
+<<<<<<< Updated upstream
     public GameObject uraniumPrefab;
     
+=======
+
+    public GameObject hole;
+
+>>>>>>> Stashed changes
     public GameObject waterPrefab;
 
     public int width = 100;
@@ -23,7 +29,10 @@ public class TerrainGenerator : MonoBehaviour
     public float bushChance = 0.001f;
     public float woodChance = 0.001f;
     public float appleChance = 0.001f;
+<<<<<<< Updated upstream
     public float uraniumChance = 0.01f;
+=======
+>>>>>>> Stashed changes
 
     public float waterLevel = 0.5f; // The height level for water
     public int waterAreaSize = 20; // Size of the water area
@@ -101,7 +110,10 @@ public class TerrainGenerator : MonoBehaviour
                 spawnObject(bushesPrefab, bushChance, x, z, cubeHeight, -1.1f, -2.2f, 0);
                 spawnObject(woodPrefab, woodChance, x, z, cubeHeight, -2f, 0f, 0f);
                 spawnObject(applePrefab, appleChance, x, z, cubeHeight, -2, 6.5f, 0);
+<<<<<<< Updated upstream
                 spawnObject(uraniumPrefab, uraniumChance, x, z, cubeHeight, -2, 6.5f, 0);
+=======
+>>>>>>> Stashed changes
             }
         }
 

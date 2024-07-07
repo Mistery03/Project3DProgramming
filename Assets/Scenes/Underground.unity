@@ -38,7 +38,6 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1213,14 +1212,16 @@ MonoBehaviour:
   cubePrefab: {fileID: 715481066353366355, guid: 7585a8200e870494888d500e486d2b77, type: 3}
   bunnyPrefab: {fileID: 1920191581749620, guid: a14fff62ccb8dfb4cb30aa2440d7e680, type: 3}
   uraniumPrefab: {fileID: 2088669640223336340, guid: 1a12b3b9f5ac4224697a1bce2fc424f1, type: 3}
-  teleporter: {fileID: 3723616553493267330, guid: 25b57105c4ac7134192c05907e7a2294, type: 3}
+  teleporter: {fileID: 3723616553493267330, guid: c08cd4a374b6b79438eefef7d570fca9, type: 3}
   waterPrefab: {fileID: 2370052644932367753, guid: 49ac3565f335e214ebd40608fa51f273, type: 3}
+  rockPrefab: {fileID: 8322176656504990857, guid: d9c1b4c9a169d554a8abeeadfe592ead, type: 3}
   width: 100
   height: 100
   scale: 10
   maxCubeHeight: 2
   minCubeHeight: 0.5
-  uraniumChance: 0.0001
+  rockChance: 0.01
+  uraniumChance: 0.001
   waterLevel: 0.5
   waterAreaSize: 20
   teleporterAreaSize: 10

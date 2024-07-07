@@ -11,4 +11,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/CombatArea.unity
     guid: 578285aab8bc90f4a8d5c47b8010dd9b
+  - enabled: 1
+    path: Assets/Scenes/Underground.unity
+    guid: 5bb1cdf1d7937e24f87e8f3b7506ed3a
+  - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: 6bf49605910e2a04ebc4660f9e31c241
   m_configObjects: {}
