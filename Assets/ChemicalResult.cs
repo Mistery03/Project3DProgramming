@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 public class ChemicalResult : MonoBehaviour
 {
@@ -11,7 +12,19 @@ public class ChemicalResult : MonoBehaviour
     public ResultSlot[] slotList;
     public bool AddItem(ChemicalData chemicalElement)
     {
-    
+        for (int i = 0; i < slotList.Length; i++)
+        {
+            ResultSlot slot = slotList[i];
+            Chemical itemInSlot = slot.GetComponentInChildren<Chemical>();
+            if (itemInSlot != null &&
+                itemInSlot.chemical == chemicalElement)
+            {
+                itemInSlot.amount++;
+                itemInSlot.refreshCount();
+                return true;
+            }
+          
+        }
 
         for (int i = 0; i < slotList.Length; i++)
         {

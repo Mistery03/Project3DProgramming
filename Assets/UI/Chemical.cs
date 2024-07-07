@@ -3,10 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using static UnityEditor.Progress;
 
-public class Chemical : MonoBehaviour
+public class Chemical : MonoBehaviour, IPointerClickHandler
 {
     public ChemicalData chemical;
     public Image image;
@@ -39,5 +40,23 @@ public class Chemical : MonoBehaviour
         countText.text = amount.ToString();
         bool textActive = amount > 1;
         countText.gameObject.SetActive(textActive);
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+
+        if (eventData.button == PointerEventData.InputButton.Left)
+        {
+            Player player = FindAnyObjectByType(typeof(Player)) as Player;  
+
+            if (player != null)
+            {
+                player.chemicalList.gameObject.SetActive(true);
+                player.chemicalList.addChemical(chemical, amount);
+                player.chemicalList.refreshCount();
+                Destroy(this.gameObject);
+            }
+        }
+       
     }
 }

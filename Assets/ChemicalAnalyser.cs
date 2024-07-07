@@ -4,11 +4,17 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UIElements;
+using static UnityEditor.Progress;
 
 public class ChemicalAnalyser : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler,IPointerExitHandler
 {
     public GameObject chemUI, hoverText;
     public TextMeshProUGUI textHover;
+    public ChemicalResult resultManager;
+
+    public ChemicalData dummyData;
+
+    public InventorySlot materialSlot;
 
 
     void Start()
@@ -24,6 +30,13 @@ public class ChemicalAnalyser : MonoBehaviour, IPointerClickHandler, IPointerEnt
            chemUI.SetActive(!chemUI.activeSelf);
 
         }
+
+        if(Input.GetKeyDown(KeyCode.E))
+        {
+            resultManager.AddItem(dummyData);
+        }
+
+       
     }
 
     public void OnPointerClick(PointerEventData eventData)
@@ -45,5 +58,33 @@ public class ChemicalAnalyser : MonoBehaviour, IPointerClickHandler, IPointerEnt
     public void OnPointerExit(PointerEventData eventData)
     {
         hoverText.SetActive(false);
+    }
+
+    public void analyseMaterial()
+    {
+        Item itemInSlot = materialSlot.GetComponentInChildren<Item>();
+        if (itemInSlot != null)
+        {
+            ChemicalData[] chemicalList = itemInSlot.item.ChemicalData;
+            for (int i = 0; i < chemicalList.Length; i++)
+            {
+               if(resultManager.AddItem(chemicalList[i]))
+                {
+                    itemInSlot.amount--;
+                    if (itemInSlot.amount <= 0)
+                    {
+                        Destroy(itemInSlot.gameObject);
+                    }
+                    else
+                    {
+                        itemInSlot.refreshCount();
+                    }
+
+                }
+            }
+
+        }
+
+        
     }
 }

@@ -49,6 +49,12 @@ public class Player : MonoBehaviour
 
     public Text hpText;
 
+    public ChemicalList chemicalList;
+
+    public InventorySlot throwSlot;
+
+    Item itemInSlot;
+
     private void Start()
     {
         
@@ -89,6 +95,7 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
+
         currentHP = Mathf.Clamp(currentHP, 0, 100);
 
         float horizontalInput = Input.GetAxis("Horizontal");
@@ -115,6 +122,21 @@ public class Player : MonoBehaviour
         if (isMoving && animator.GetBool("IsPickingUp"))
         {
             animator.SetBool("IsPickingUp", false);
+        }
+
+        itemInSlot = throwSlot.GetComponentInChildren<Item>();
+        if (itemInSlot != null && !isCarrying)
+        {
+            GameObject throwObject = Instantiate(itemInSlot.item.instance);
+            carriedObject = throwObject;
+            isCarrying = true;
+            carriedObject.GetComponent<Rigidbody>().isKinematic = true; // Disable physics while carrying
+
+        }else if (itemInSlot == null)
+        {
+            Destroy(carriedObject.gameObject);
+            carriedObject = null;
+            isCarrying = false ;
         }
 
         if (Input.GetMouseButtonDown(0))
@@ -147,13 +169,22 @@ public class Player : MonoBehaviour
             if (taskUI != null)
             {
                 taskUI.SetActive(!taskUI.activeSelf);
-                if (taskUI.activeSelf)
-                {
-                    Debug.Log("Taskui activated");
-
-                }
+               
 
             }
+        }
+        if (Input.GetKeyDown(KeyCode.Escape) && taskUI.activeSelf)
+        {
+            taskUI.SetActive(!taskUI.activeSelf);
+        }
+
+        if (Input.GetKeyDown(KeyCode.C)) 
+        { 
+            chemicalList.gameObject.SetActive(!chemicalList.gameObject.activeSelf);
+        }
+        if (Input.GetKeyDown(KeyCode.Escape) && chemicalList.gameObject.activeSelf)
+        {
+            chemicalList.gameObject.SetActive(!chemicalList.gameObject.activeSelf);
         }
     }
 
@@ -261,6 +292,11 @@ public class Player : MonoBehaviour
 
             carriedObject.GetComponent<Rigidbody>().AddForce(throwDirection * currentThrowForce, ForceMode.VelocityChange);
 
+            itemInSlot.amount--;
+            itemInSlot.refreshCount();
+            if (itemInSlot.amount <= 0)
+                Destroy(itemInSlot.gameObject);
+       
             carriedObject = null;
             isCarrying = false;
             isAiming = false;

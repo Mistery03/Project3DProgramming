@@ -896,6 +896,54 @@ PrefabInstance:
       propertyPath: m_Name
       value: ChemicalAnalyser
       objectReference: {fileID: 0}
+    - target: {fileID: 1930967110203624923, guid: e5c63034934d2214aaab46638160fe4f, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1930967110203624923, guid: e5c63034934d2214aaab46638160fe4f, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1930967110203624923, guid: e5c63034934d2214aaab46638160fe4f, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1930967110203624923, guid: e5c63034934d2214aaab46638160fe4f, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1930967110203624923, guid: e5c63034934d2214aaab46638160fe4f, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1930967110203624923, guid: e5c63034934d2214aaab46638160fe4f, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4830335631457174407, guid: e5c63034934d2214aaab46638160fe4f, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4830335631457174407, guid: e5c63034934d2214aaab46638160fe4f, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4830335631457174407, guid: e5c63034934d2214aaab46638160fe4f, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4830335631457174407, guid: e5c63034934d2214aaab46638160fe4f, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4830335631457174407, guid: e5c63034934d2214aaab46638160fe4f, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4830335631457174407, guid: e5c63034934d2214aaab46638160fe4f, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7241077211775313405, guid: e5c63034934d2214aaab46638160fe4f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3.24
