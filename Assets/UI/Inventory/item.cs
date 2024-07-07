@@ -5,7 +5,6 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using Inventory.Model;
 using TMPro;
-using static UnityEditor.Timeline.TimelinePlaybackControls;
 
 public class Item : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler
 {

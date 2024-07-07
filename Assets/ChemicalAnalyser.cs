@@ -4,7 +4,6 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UIElements;
-using static UnityEditor.Progress;
 
 public class ChemicalAnalyser : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler,IPointerExitHandler
 {
