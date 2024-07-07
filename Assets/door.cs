@@ -14,6 +14,6 @@ public class door : MonoBehaviour
             SaveSystem.savePlayer(player);
             SaveSystem.saveInventory(player.inventoryController);
         }
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(2);
     }
 }
