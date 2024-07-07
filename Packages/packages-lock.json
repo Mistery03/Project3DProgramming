@@ -16,7 +16,11 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.collab-proxy": {
+<<<<<<< Updated upstream
       "version": "2.2.0",
+=======
+      "version": "2.4.3",
+>>>>>>> Stashed changes
       "depth": 0,
       "source": "registry",
       "dependencies": {},

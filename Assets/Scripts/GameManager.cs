@@ -67,13 +67,12 @@ public class GameManager : MonoBehaviour
         if (animFollow != null)
         {
             animFollow.SetTarget(playerInstance.transform);
-            ChangeBackgroundMusic(newMusicClip); // Change the background music when the animal starts following the player
+            ChangeBackgroundMusic(newMusicClip); 
         }
     }
 
     public void ChangeScene(string sceneName)
     {
-        AudioDestroy();
         SceneManager.LoadScene(sceneName);
     }
 
@@ -86,7 +85,7 @@ public class GameManager : MonoBehaviour
     {
         if (audioSource == null)
         {
-            audioSource = gameObject.AddComponent<AudioSource>(); // Add an AudioSource component to the GameManager
+            audioSource = gameObject.AddComponent<AudioSource>(); 
         }
     }
 
