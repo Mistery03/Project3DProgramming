@@ -129,7 +129,7 @@ public class Player : MonoBehaviour
             isCarrying = true;
             carriedObject.GetComponent<Rigidbody>().isKinematic = true; // Disable physics while carrying
 
-        }else if (itemInSlot == null)
+        }else if (itemInSlot == null && carriedObject != null)
         {
             Destroy(carriedObject.gameObject);
             carriedObject = null;

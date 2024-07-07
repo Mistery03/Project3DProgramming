@@ -16,7 +16,7 @@ public class GroundGenerator : MonoBehaviour
     public float minCubeHeight = 0.5f;
 
     public float rockChance = 0.01f;
-    public float uraniumChance = 0.1f;
+    public float uraniumChance = 0.0001f;
 
     public float waterLevel = 0.5f; // The height level for water
     public int waterAreaSize = 20; // Size of the water area
@@ -89,8 +89,9 @@ public class GroundGenerator : MonoBehaviour
                 }
 
                 // Spawn objects with chances
-                spawnObject(uraniumPrefab, uraniumChance, x, z, cubeHeight, -2, 6.5f, 0, new Vector3(0.1f, 0.1f, 0.1f), new Vector3(0.5f, 0.5f, 0.5f)); // Uniform scale for uranium
+                //spawnObject(uraniumPrefab, uraniumChance, x, z, cubeHeight, -2, 6.5f, 0, new Vector3(0.1f, 0.1f, 0.1f), new Vector3(0.5f, 0.5f, 0.5f)); // Uniform scale for uranium
                 spawnObject(rockPrefab, rockChance, x, z, cubeHeight, 0f, 1f, 0, new Vector3(0.5f, 0.5f, 0.5f), new Vector3(5f, 5f, 5f)); // Variable scale for rocks
+                spawnItem(uraniumPrefab, uraniumChance, x, z, cubeHeight, -2, 6.5f, 0);
             }
         }
 
@@ -163,6 +164,16 @@ public class GroundGenerator : MonoBehaviour
             );
             objectToBeSpawned.transform.localScale = scale;
 
+            objectToBeSpawned.transform.parent = this.transform;
+        }
+    }
+
+    void spawnItem(GameObject prefab, float chance, int x, int z, float cubeHeight, float xOffset, float heightOffset, float zOffset)
+    {
+        if (Random.value < chance)
+        {
+            Vector3 position = new Vector3(x + xOffset, cubeHeight + heightOffset, z + zOffset);
+            GameObject objectToBeSpawned = Instantiate(prefab, position, Quaternion.identity);
             objectToBeSpawned.transform.parent = this.transform;
         }
     }

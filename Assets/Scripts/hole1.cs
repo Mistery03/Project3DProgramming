@@ -22,6 +22,9 @@ public class holeOne : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             GameManager.Instance.AudioDestroy();
+            Player player = collision.GetComponent("Player") as Player;
+            SaveSystem.savePlayer(player);
+            SaveSystem.saveInventory(player.inventoryController);
             gameManager.ChangeScene("CombatArea"); 
         }
     }
