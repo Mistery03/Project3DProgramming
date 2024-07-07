@@ -3,10 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Inventory.Model
-{
+
     [CreateAssetMenu]
-    public class ItemData : ScriptableObject
+    public class ChemicalData: ScriptableObject
     {
 
         public int ID = -1;
@@ -27,22 +26,18 @@ namespace Inventory.Model
         [field: SerializeField]
         public ItemType ItemType { get; set; }
 
-        [field: SerializeField]
-        public bool stackable = true;
 
-        [field: SerializeField]
-        public ChemicalData[] ChemicalData { get; set; }
     }
 
     public enum ItemType
     {
-        Food,
-        Radiation,
-        EarthElement,
+       metal,
+       nonmetal,
+       actinide,
     }
 
 
 
 
-}
+
 

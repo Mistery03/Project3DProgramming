@@ -19,3 +19,5 @@ MonoBehaviour:
   <instance>k__BackingField: {fileID: 3242045612695948039, guid: 8e50a7d5508d7c942bd4445cb81dc2a3, type: 3}
   <ItemType>k__BackingField: 0
   stackable: 1
+  <ChemicalData>k__BackingField:
+  - {fileID: 11400000, guid: 99b19f295af788143aeefe109c61801f, type: 2}
